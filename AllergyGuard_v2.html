@@ -2368,68 +2368,68 @@
   </div>
   <script>
     const SDB = {
-      nasal: [{ id: 'n1', l: 'จามบ่อย', ic: '💨', w: { rhinitis: 3, dust: 2 } }, { id: 'n2', l: 'คัดจมูก', ic: '🤧', w: { rhinitis: 3, dust: 2 } }, { id: 'n3', l: 'น้ำมูกใส', ic: '💧', w: { rhinitis: 3, pollen: 2 } }, { id: 'n4', l: 'คันจมูก', ic: '✋', w: { rhinitis: 2, dust: 2 } }, { id: 'n5', l: 'ตาแดง/คัน', ic: '👁️', w: { rhinitis: 2, pollen: 3 } }, { id: 'n6', l: 'น้ำตาไหล', ic: '😢', w: { pollen: 3, rhinitis: 1 } }],
-      skin: [{ id: 's1', l: 'ผื่นแดง', ic: '🔴', w: { eczema: 3, food: 2, contact: 2 } }, { id: 's2', l: 'คันผิวหนัง', ic: '🖐️', w: { eczema: 3, contact: 3, dust: 1 } }, { id: 's3', l: 'ลมพิษ', ic: '⚠️', w: { food: 3, drug: 2, contact: 2 } }, { id: 's4', l: 'ผิวแห้ง/แตก', ic: '🌵', w: { eczema: 3, contact: 1 } }, { id: 's5', l: 'บวมที่ผิว/ปาก', ic: '🫧', w: { food: 2, drug: 3, insect: 2 } }, { id: 's6', l: 'ผื่นหลังสัมผัส', ic: '🤚', w: { contact: 4, latex: 3 } }],
-      resp: [{ id: 'r1', l: 'หายใจมีเสียงหวีด', ic: '🌬️', w: { asthma: 4, dust: 2 } }, { id: 'r2', l: 'หอบ/หายใจลำบาก', ic: '💨', w: { asthma: 4, food: 2 } }, { id: 'r3', l: 'ไอเรื้อรัง', ic: '😮‍💨', w: { asthma: 3, dust: 2, rhinitis: 1 } }, { id: 'r4', l: 'แน่นหน้าอก', ic: '❤️', w: { asthma: 3, food: 1 } }, { id: 'r5', l: 'ไอมากตอนเช้า', ic: '🌅', w: { dust: 3, rhinitis: 2 } }],
-      gut: [{ id: 'g1', l: 'คลื่นไส้/อาเจียน', ic: '🤢', w: { food: 3, drug: 2 } }, { id: 'g2', l: 'ปวดท้องหลังกิน', ic: '😣', w: { food: 3, drug: 1 } }, { id: 'g3', l: 'ท้องเสียบ่อย', ic: '🚽', w: { food: 3 } }, { id: 'g4', l: 'ปาก/ลิ้นชา/บวม', ic: '👄', w: { food: 4, latex: 2 } }, { id: 'g5', l: 'คันปากหลังกิน', ic: '😋', w: { food: 3, latex: 1 } }]
+      nasal: [{id: 'n1', l: 'จามบ่อย', ic: '💨', w: {rhinitis: 3, dust: 2}}, {id: 'n2', l: 'คัดจมูก', ic: '🤧', w: {rhinitis: 3, dust: 2}}, {id: 'n3', l: 'น้ำมูกใส', ic: '💧', w: {rhinitis: 3, pollen: 2}}, {id: 'n4', l: 'คันจมูก', ic: '✋', w: {rhinitis: 2, dust: 2}}, {id: 'n5', l: 'ตาแดง/คัน', ic: '👁️', w: {rhinitis: 2, pollen: 3}}, {id: 'n6', l: 'น้ำตาไหล', ic: '😢', w: {pollen: 3, rhinitis: 1}}],
+      skin: [{id: 's1', l: 'ผื่นแดง', ic: '🔴', w: {eczema: 3, food: 2, contact: 2}}, {id: 's2', l: 'คันผิวหนัง', ic: '🖐️', w: {eczema: 3, contact: 3, dust: 1}}, {id: 's3', l: 'ลมพิษ', ic: '⚠️', w: {food: 3, drug: 2, contact: 2}}, {id: 's4', l: 'ผิวแห้ง/แตก', ic: '🌵', w: {eczema: 3, contact: 1}}, {id: 's5', l: 'บวมที่ผิว/ปาก', ic: '🫧', w: {food: 2, drug: 3, insect: 2}}, {id: 's6', l: 'ผื่นหลังสัมผัส', ic: '🤚', w: {contact: 4, latex: 3}}],
+      resp: [{id: 'r1', l: 'หายใจมีเสียงหวีด', ic: '🌬️', w: {asthma: 4, dust: 2}}, {id: 'r2', l: 'หอบ/หายใจลำบาก', ic: '💨', w: {asthma: 4, food: 2}}, {id: 'r3', l: 'ไอเรื้อรัง', ic: '😮‍💨', w: {asthma: 3, dust: 2, rhinitis: 1}}, {id: 'r4', l: 'แน่นหน้าอก', ic: '❤️', w: {asthma: 3, food: 1}}, {id: 'r5', l: 'ไอมากตอนเช้า', ic: '🌅', w: {dust: 3, rhinitis: 2}}],
+      gut: [{id: 'g1', l: 'คลื่นไส้/อาเจียน', ic: '🤢', w: {food: 3, drug: 2}}, {id: 'g2', l: 'ปวดท้องหลังกิน', ic: '😣', w: {food: 3, drug: 1}}, {id: 'g3', l: 'ท้องเสียบ่อย', ic: '🚽', w: {food: 3}}, {id: 'g4', l: 'ปาก/ลิ้นชา/บวม', ic: '👄', w: {food: 4, latex: 2}}, {id: 'g5', l: 'คันปากหลังกิน', ic: '😋', w: {food: 3, latex: 1}}]
     };
     const ALL = [...Object.values(SDB).flat()];
     const TY = {
-      rhinitis: { n: 'จมูกอักเสบภูมิแพ้', c: '#0D9373', bg: '#E5F6F1' },
-      asthma: { n: 'โรคหืด', c: '#1B4F8A', bg: '#E8F0FA' },
-      eczema: { n: 'ผื่นผิวหนังภูมิแพ้', c: '#993C1D', bg: '#FAECE7' },
-      food: { n: 'แพ้อาหาร', c: '#B45309', bg: '#FEF9EE' },
-      dust: { n: 'แพ้ไรฝุ่น', c: '#475569', bg: '#F1F5F9' },
-      pollen: { n: 'แพ้ละอองเกสร', c: '#3B6D11', bg: '#EAF3DE' },
-      contact: { n: 'ผื่นสัมผัส', c: '#7C2D12', bg: '#FFF7ED' },
-      drug: { n: 'แพ้ยา', c: '#991B1B', bg: '#FEF2F2' },
-      latex: { n: 'แพ้ยาง Latex', c: '#5B21B6', bg: '#EDE9FE' },
-      insect: { n: 'แพ้แมลงกัด', c: '#92400E', bg: '#FEF9EE' }
+      rhinitis: {n: 'จมูกอักเสบภูมิแพ้', c: '#0D9373', bg: '#E5F6F1'},
+      asthma: {n: 'โรคหืด', c: '#1B4F8A', bg: '#E8F0FA'},
+      eczema: {n: 'ผื่นผิวหนังภูมิแพ้', c: '#993C1D', bg: '#FAECE7'},
+      food: {n: 'แพ้อาหาร', c: '#B45309', bg: '#FEF9EE'},
+      dust: {n: 'แพ้ไรฝุ่น', c: '#475569', bg: '#F1F5F9'},
+      pollen: {n: 'แพ้ละอองเกสร', c: '#3B6D11', bg: '#EAF3DE'},
+      contact: {n: 'ผื่นสัมผัส', c: '#7C2D12', bg: '#FFF7ED'},
+      drug: {n: 'แพ้ยา', c: '#991B1B', bg: '#FEF2F2'},
+      latex: {n: 'แพ้ยาง Latex', c: '#5B21B6', bg: '#EDE9FE'},
+      insect: {n: 'แพ้แมลงกัด', c: '#92400E', bg: '#FEF9EE'}
     };
     const PTASKS = [
-      { freq: 'ทุกวัน', task: 'ล้างจมูกด้วยน้ำเกลือ Isotonic', res: 'ลดสารก่อภูมิแพ้ในช่องจมูก', tg: 'tg-t' },
-      { freq: 'ทุกวัน', task: 'เช็ดพื้น/ระบายอากาศห้องนอน', res: 'ลดฝุ่น ลดความชื้น ลดเชื้อรา', tg: 'tg-t' },
-      { freq: 'ทุกวัน', task: 'บันทึกอาการในแอป', res: 'ติดตามแนวโน้มและระบุสิ่งกระตุ้น', tg: 'tg-t' },
-      { freq: 'ทุกสัปดาห์', task: 'ซักผ้าปูที่นอน/ปลอกหมอน (น้ำร้อน)', res: 'กำจัดไรฝุ่นและเชื้อโรค', tg: 'tg-a' },
-      { freq: 'ทุกสัปดาห์', task: 'ดูดฝุ่นพรม โซฟา ผ้าม่าน', res: 'ลดฝุ่นสะสม', tg: 'tg-a' },
-      { freq: 'ทุกเดือน', task: 'เปลี่ยนไส้กรองเครื่องกรองอากาศ', res: 'ประสิทธิภาพกรองสูงสุด', tg: 'tg-o' },
-      { freq: 'ทุกเดือน', task: 'ทบทวนบันทึกอาการ หาแนวโน้ม', res: 'วางแผนหลีกเลี่ยงสิ่งกระตุ้น', tg: 'tg-o' },
-      { freq: 'ทุก 3 เดือน', task: 'พบแพทย์ติดตามอาการ', res: 'ปรับยาและแผนการดูแล', tg: 'tg-v' }
+      {freq: 'ทุกวัน', task: 'ล้างจมูกด้วยน้ำเกลือ Isotonic', res: 'ลดสารก่อภูมิแพ้ในช่องจมูก', tg: 'tg-t'},
+      {freq: 'ทุกวัน', task: 'เช็ดพื้น/ระบายอากาศห้องนอน', res: 'ลดฝุ่น ลดความชื้น ลดเชื้อรา', tg: 'tg-t'},
+      {freq: 'ทุกวัน', task: 'บันทึกอาการในแอป', res: 'ติดตามแนวโน้มและระบุสิ่งกระตุ้น', tg: 'tg-t'},
+      {freq: 'ทุกสัปดาห์', task: 'ซักผ้าปูที่นอน/ปลอกหมอน (น้ำร้อน)', res: 'กำจัดไรฝุ่นและเชื้อโรค', tg: 'tg-a'},
+      {freq: 'ทุกสัปดาห์', task: 'ดูดฝุ่นพรม โซฟา ผ้าม่าน', res: 'ลดฝุ่นสะสม', tg: 'tg-a'},
+      {freq: 'ทุกเดือน', task: 'เปลี่ยนไส้กรองเครื่องกรองอากาศ', res: 'ประสิทธิภาพกรองสูงสุด', tg: 'tg-o'},
+      {freq: 'ทุกเดือน', task: 'ทบทวนบันทึกอาการ หาแนวโน้ม', res: 'วางแผนหลีกเลี่ยงสิ่งกระตุ้น', tg: 'tg-o'},
+      {freq: 'ทุก 3 เดือน', task: 'พบแพทย์ติดตามอาการ', res: 'ปรับยาและแผนการดูแล', tg: 'tg-v'}
     ];
     const QQS = ['ยาแก้แพ้ตัวไหนดี?', 'ไรฝุ่นคืออะไร?', 'อาหารที่ควรกิน?', 'เมื่อไหร่ควรพบแพทย์?', 'วิธีลดอาการกลางคืน', 'แพ้อาหารทะเลอันตรายไหม?'];
 
     let CU = null, sel = new Set(), lSc = null, lSym = [], hist = [], diary = [], chatH = [], pChk = {};
-    const DEMO = { email: 'demo@allergy.com', pass: 'demo1234', name: 'สมชาย ใจดี', age: 32, sex: 'ชาย', wt: 70, ht: 170, bld: 'B', fam: '1', env: 'urban', job: 'office', pet: '0', fa: 'อาหารทะเล', da: '', dis: '' };
+    const DEMO = {email: 'demo@allergy.com', pass: 'demo1234', name: 'สมชาย ใจดี', age: 32, sex: 'ชาย', wt: 70, ht: 170, bld: 'B', fam: '1', env: 'urban', job: 'office', pet: '0', fa: 'อาหารทะเล', da: '', dis: ''};
     let users = [DEMO];
 
     const $ = id => document.getElementById(id);
     const v = id => ($(id) || {}).value || '';
     const show = id => $(id) && $(id).classList.remove('hidden');
     const hide = id => $(id) && $(id).classList.add('hidden');
-    const setH = (id, h) => { if ($(id)) $(id).innerHTML = h; };
+    const setH = (id, h) => {if ($(id)) $(id).innerHTML = h;};
 
-    function saveLS() { if (!CU) return; const k = CU.email; localStorage.setItem('agh_' + k, JSON.stringify(hist)); localStorage.setItem('agd_' + k, JSON.stringify(diary)); localStorage.setItem('agp_' + k, JSON.stringify(pChk)); }
-    function loadLS() { if (!CU) return; const h = localStorage.getItem('agh_' + CU.email); const d = localStorage.getItem('agd_' + CU.email); const p = localStorage.getItem('agp_' + CU.email); if (h) hist = JSON.parse(h); if (d) diary = JSON.parse(d); if (p) pChk = JSON.parse(p); }
-    function saveU() { localStorage.setItem('ag_users', JSON.stringify(users)); }
-    function loadU() { const u = localStorage.getItem('ag_users'); if (u) { const p = JSON.parse(u); if (!p.find(x => x.email === DEMO.email)) p.unshift(DEMO); users = p; } }
+    function saveLS() {if (!CU) return; const k = CU.email; localStorage.setItem('agh_' + k, JSON.stringify(hist)); localStorage.setItem('agd_' + k, JSON.stringify(diary)); localStorage.setItem('agp_' + k, JSON.stringify(pChk));}
+    function loadLS() {if (!CU) return; const h = localStorage.getItem('agh_' + CU.email); const d = localStorage.getItem('agd_' + CU.email); const p = localStorage.getItem('agp_' + CU.email); if (h) hist = JSON.parse(h); if (d) diary = JSON.parse(d); if (p) pChk = JSON.parse(p);}
+    function saveU() {localStorage.setItem('ag_users', JSON.stringify(users));}
+    function loadU() {const u = localStorage.getItem('ag_users'); if (u) {const p = JSON.parse(u); if (!p.find(x => x.email === DEMO.email)) p.unshift(DEMO); users = p;} }
 
-    function showAuth(p) { $('pgLogin').classList.toggle('hidden', p !== 'login'); $('pgReg').classList.toggle('hidden', p !== 'reg'); }
-    function doLogin() { loadU(); const e = v('lEm'), p = v('lPw'); const u = users.find(x => x.email === e && x.pass === p); if (!u) { show('lErr'); return; } hide('lErr'); enterApp(u); }
-    function enterApp(u) { CU = u; loadLS(); hide('authWrap'); show('appWrap'); $('mainNav').style.display = ''; $('navAv').textContent = u.name[0]; $('navNm').textContent = u.name; buildNotifs(); goto('dash'); buildDash(); }
-    function logout() { saveLS(); CU = null; lSc = null; lSym = []; hist = []; diary = []; pChk = {}; chatH = []; show('authWrap'); hide('appWrap'); $('mainNav').style.display = 'none'; showAuth('login'); }
+    function showAuth(p) {$('pgLogin').classList.toggle('hidden', p !== 'login'); $('pgReg').classList.toggle('hidden', p !== 'reg');}
+    function doLogin() {loadU(); const e = v('lEm'), p = v('lPw'); const u = users.find(x => x.email === e && x.pass === p); if (!u) {show('lErr'); return;} hide('lErr'); enterApp(u);}
+    function enterApp(u) {CU = u; loadLS(); hide('authWrap'); show('appWrap'); $('mainNav').style.display = ''; $('navAv').textContent = u.name[0]; $('navNm').textContent = u.name; buildNotifs(); goto('dash'); buildDash();}
+    function logout() {saveLS(); CU = null; lSc = null; lSym = []; hist = []; diary = []; pChk = {}; chatH = []; show('authWrap'); hide('appWrap'); $('mainNav').style.display = 'none'; showAuth('login');}
 
     let rS = 1;
-    function rsN(s) { if (s === 1 && (!v('rNm') || !v('rEm') || v('rPw').length < 8)) { alert('กรุณากรอกข้อมูลให้ครบ (รหัสผ่านอย่างน้อย 8 ตัว)'); return; } if (s === 2 && !v('rAge')) { alert('กรุณาระบุอายุ'); return; } hide('rs' + s); show('rs' + (s + 1)); rS = s + 1; updDots(); }
-    function rsB(s) { hide('rs' + s); show('rs' + (s - 1)); rS = s - 1; updDots(); }
-    function updDots() { [1, 2, 3].forEach(i => { const d = $('rd' + i); d.className = 'rbd' + (i < rS ? ' done' : i === rS ? ' act' : ''); }); }
-    function doReg() { loadU(); const u = { email: v('rEm'), pass: v('rPw'), name: v('rNm'), age: v('rAge'), sex: v('rSex'), wt: v('rWt'), ht: v('rHt'), bld: v('rBld'), fam: v('rFam'), env: v('rEnv'), job: v('rJob'), pet: v('rPet'), fa: v('rFA'), da: v('rDA'), dis: v('rDis') }; if (users.find(x => x.email === u.email)) { alert('อีเมลนี้มีผู้ใช้งานแล้ว'); return; } users.push(u); saveU(); enterApp(u); }
+    function rsN(s) {if (s === 1 && (!v('rNm') || !v('rEm') || v('rPw').length < 8)) {alert('กรุณากรอกข้อมูลให้ครบ (รหัสผ่านอย่างน้อย 8 ตัว)'); return;} if (s === 2 && !v('rAge')) {alert('กรุณาระบุอายุ'); return;} hide('rs' + s); show('rs' + (s + 1)); rS = s + 1; updDots();}
+    function rsB(s) {hide('rs' + s); show('rs' + (s - 1)); rS = s - 1; updDots();}
+    function updDots() {[1, 2, 3].forEach(i => {const d = $('rd' + i); d.className = 'rbd' + (i < rS ? ' done' : i === rS ? ' act' : '');});}
+    function doReg() {loadU(); const u = {email: v('rEm'), pass: v('rPw'), name: v('rNm'), age: v('rAge'), sex: v('rSex'), wt: v('rWt'), ht: v('rHt'), bld: v('rBld'), fam: v('rFam'), env: v('rEnv'), job: v('rJob'), pet: v('rPet'), fa: v('rFA'), da: v('rDA'), dis: v('rDis')}; if (users.find(x => x.email === u.email)) {alert('อีเมลนี้มีผู้ใช้งานแล้ว'); return;} users.push(u); saveU(); enterApp(u);}
 
     const PGS = ['Dash', 'Assess', 'Diary', 'Chat', 'Plan', 'Rec', 'Prev', 'Prof'];
     function goto(p) {
-      PGS.forEach(x => { const el = $('pg' + x); if (el) el.classList.add('hidden'); });
+      PGS.forEach(x => {const el = $('pg' + x); if (el) el.classList.add('hidden');});
       const pg = $('pg' + p[0].toUpperCase() + p.slice(1)); if (pg) pg.classList.remove('hidden');
       document.querySelectorAll('.ntab').forEach((t, i) => t.classList.toggle('on', ['dash', 'assess', 'diary', 'chat', 'plan', 'rec', 'prev', 'prof'][i] === p));
-      if (p === 'rec') buildRec(); if (p === 'prof') buildProf(); if (p === 'diary') { buildDiaryList(); initDPicker(); } if (p === 'plan') buildPlan(); if (p === 'chat' && !chatH.length) initChat(); if (p === 'prev') buildPrevTbl();
+      if (p === 'rec') buildRec(); if (p === 'prof') buildProf(); if (p === 'diary') {buildDiaryList(); initDPicker();} if (p === 'plan') buildPlan(); if (p === 'chat' && !chatH.length) initChat(); if (p === 'prev') buildPrevTbl();
     }
 
     function buildDash() {
@@ -2437,93 +2437,93 @@
       const gt = h < 12 ? 'อรุณสวัสดิ์' : h < 17 ? 'สวัสดีตอนบ่าย' : 'สวัสดีตอนเย็น';
       setH('greetH', gt + ' ' + u.name.split(' ')[0] + ' 👋'); setH('greetS', 'AllergyGuard พร้อมดูแลสุขภาพของคุณ');
       const als = [];
-      if (u.fa) als.push({ c: 'al-warn', m: '⚠️ แพ้อาหาร: <b>' + u.fa + '</b> — ตรวจสอบส่วนประกอบก่อนรับประทานทุกครั้ง' });
-      if (u.da) als.push({ c: 'al-warn', m: '⚠️ แพ้ยา: <b>' + u.da + '</b> — แจ้งแพทย์ทุกครั้งก่อนรับยา' });
-      if (!lSc) als.push({ c: 'al-info', m: '💡 ยังไม่มีผลประเมิน — คลิก <b>"ประเมิน"</b> เพื่อวิเคราะห์ความเสี่ยง' });
-      const td = new Date().toISOString().slice(0, 10); if (!diary.find(d => d.date === td)) als.push({ c: 'al-ok', m: '📓 อย่าลืมบันทึกอาการวันนี้! <a onclick="goto(\'diary\')" style="color:var(--td);font-weight:700;cursor:pointer">บันทึกเลย →</a>' });
+      if (u.fa) als.push({c: 'al-warn', m: '⚠️ แพ้อาหาร: <b>' + u.fa + '</b> — ตรวจสอบส่วนประกอบก่อนรับประทานทุกครั้ง'});
+      if (u.da) als.push({c: 'al-warn', m: '⚠️ แพ้ยา: <b>' + u.da + '</b> — แจ้งแพทย์ทุกครั้งก่อนรับยา'});
+      if (!lSc) als.push({c: 'al-info', m: '💡 ยังไม่มีผลประเมิน — คลิก <b>"ประเมิน"</b> เพื่อวิเคราะห์ความเสี่ยง'});
+      const td = new Date().toISOString().slice(0, 10); if (!diary.find(d => d.date === td)) als.push({c: 'al-ok', m: '📓 อย่าลืมบันทึกอาการวันนี้! <a onclick="goto(\'diary\')" style="color:var(--td);font-weight:700;cursor:pointer">บันทึกเลย →</a>'});
       setH('dashAl', als.map(a => `<div class="al ${a.c}">${a.m}</div>`).join(''));
       const bmi = u.wt && u.ht ? (u.wt / ((u.ht / 100) ** 2)).toFixed(1) : null;
       const bmiL = bmi ? (+bmi < 18.5 ? 'น้ำหนักน้อย' : +bmi < 23 ? 'ปกติ' : +bmi < 25 ? 'น้ำหนักเกิน' : 'อ้วน') : '—';
-      setH('statGrd', `<div class="sc"><div class="sc-ic" style="background:var(--tl)">📋</div><div class="sc-l">การประเมิน</div><div class="sc-v">${hist.length}</div><div class="sc-s">ครั้ง</div></div><div class="sc"><div class="sc-ic" style="background:var(--vl)">📓</div><div class="sc-l">บันทึกอาการ</div><div class="sc-v">${diary.length}</div><div class="sc-s">รายการ</div></div><div class="sc"><div class="sc-ic" style="background:var(--ol)">⚖️</div><div class="sc-l">BMI</div><div class="sc-v">${bmi || '—'}</div><div class="sc-s">${bmiL}</div></div><div class="sc"><div class="sc-ic" style="background:var(--cl)">🧬</div><div class="sc-l">เสี่ยงพันธุกรรม</div><div class="sc-v">${{ 0: 'ต่ำ', '0.5': 'กลาง', 1: 'กลาง', 2: 'สูง' }[u.fam] || '—'}</div><div class="sc-s">${{ 0: 'ไม่มีประวัติ', '0.5': 'ไม่แน่ใจ', 1: 'พ่อหรือแม่', 2: 'ทั้งพ่อและแม่' }[u.fam] || '—'}</div></div>`);
-      if (lSc) { const top = Object.entries(lSc).sort((a, b) => b[1] - a[1]); const mv = top[0][1], rsk = mv >= 65 ? 'hi' : mv >= 35 ? 'med' : 'lo'; $('rmn').style.left = { hi: '84%', med: '50%', lo: '16%' }[rsk]; setH('rBadge', `<span class="rbg r${rsk}">${{ hi: '🔴 ความเสี่ยงสูง', med: '🟡 ความเสี่ยงปานกลาง', lo: '🟢 ความเสี่ยงต่ำ' }[rsk]}</span>`); $('rNote').textContent = 'จากผลการประเมินล่าสุด'; setH('topAlg', top.slice(0, 4).map(([t, val]) => `<div class="pb-row"><span class="pb-nm">${TY[t].n}</span><div class="pb-bg"><div class="pb-fill" style="width:${val}%;background:${TY[t].c}"></div></div><span class="pb-pct">${val}%</span></div>`).join('')); }
-      const mh = hist.slice(-4).reverse(); if (mh.length) setH('recentH', '<div class="tl">' + mh.map(h => `<div class="tli"><div class="tl-dot" style="color:${h.r === 'hi' ? '#E5533A' : h.r === 'med' ? '#D97706' : '#0D9373'}"></div><div class="tl-dt">${h.dt}</div><div class="tl-c"><b>${h.topT}</b> — ${{ hi: 'ความเสี่ยงสูง', med: 'ปานกลาง', lo: 'ต่ำ' }[h.r]}<div class="tl-tg">${h.syms.slice(0, 3).map(s => `<span class="tag tg-s">${s}</span>`).join('')}</div></div></div>`).join('') + '</div>');
+      setH('statGrd', `<div class="sc"><div class="sc-ic" style="background:var(--tl)">📋</div><div class="sc-l">การประเมิน</div><div class="sc-v">${hist.length}</div><div class="sc-s">ครั้ง</div></div><div class="sc"><div class="sc-ic" style="background:var(--vl)">📓</div><div class="sc-l">บันทึกอาการ</div><div class="sc-v">${diary.length}</div><div class="sc-s">รายการ</div></div><div class="sc"><div class="sc-ic" style="background:var(--ol)">⚖️</div><div class="sc-l">BMI</div><div class="sc-v">${bmi || '—'}</div><div class="sc-s">${bmiL}</div></div><div class="sc"><div class="sc-ic" style="background:var(--cl)">🧬</div><div class="sc-l">เสี่ยงพันธุกรรม</div><div class="sc-v">${{0: 'ต่ำ', '0.5': 'กลาง', 1: 'กลาง', 2: 'สูง'}[u.fam] || '—'}</div><div class="sc-s">${{0: 'ไม่มีประวัติ', '0.5': 'ไม่แน่ใจ', 1: 'พ่อหรือแม่', 2: 'ทั้งพ่อและแม่'}[u.fam] || '—'}</div></div>`);
+      if (lSc) {const top = Object.entries(lSc).sort((a, b) => b[1] - a[1]); const mv = top[0][1], rsk = mv >= 65 ? 'hi' : mv >= 35 ? 'med' : 'lo'; $('rmn').style.left = {hi: '84%', med: '50%', lo: '16%'}[rsk]; setH('rBadge', `<span class="rbg r${rsk}">${{hi: '🔴 ความเสี่ยงสูง', med: '🟡 ความเสี่ยงปานกลาง', lo: '🟢 ความเสี่ยงต่ำ'}[rsk]}</span>`); $('rNote').textContent = 'จากผลการประเมินล่าสุด'; setH('topAlg', top.slice(0, 4).map(([t, val]) => `<div class="pb-row"><span class="pb-nm">${TY[t].n}</span><div class="pb-bg"><div class="pb-fill" style="width:${val}%;background:${TY[t].c}"></div></div><span class="pb-pct">${val}%</span></div>`).join(''));}
+      const mh = hist.slice(-4).reverse(); if (mh.length) setH('recentH', '<div class="tl">' + mh.map(h => `<div class="tli"><div class="tl-dot" style="color:${h.r === 'hi' ? '#E5533A' : h.r === 'med' ? '#D97706' : '#0D9373'}"></div><div class="tl-dt">${h.dt}</div><div class="tl-c"><b>${h.topT}</b> — ${{hi: 'ความเสี่ยงสูง', med: 'ปานกลาง', lo: 'ต่ำ'}[h.r]}<div class="tl-tg">${h.syms.slice(0, 3).map(s => `<span class="tag tg-s">${s}</span>`).join('')}</div></div></div>`).join('') + '</div>');
       const ld = diary.slice(0, 3); if (ld.length) setH('dashDiary', ld.map(d => `<div class="diary-entry"><div class="diary-hd"><span class="diary-dt">${d.date}</span><span style="font-size:11.5px;font-weight:700;color:${['', '#0D9373', '#15803D', '#D97706', '#E5533A', '#B91C1C'][d.level]}">${['', 'ไม่มีอาการ', 'เล็กน้อย', 'ปานกลาง', 'รุนแรง', 'รุนแรงมาก'][d.level]}</span></div><div class="diary-body">${d.note || '—'}</div><div class="diary-tg">${(d.syms || []).slice(0, 3).map(s => `<span class="tag tg-s">${s}</span>`).join('')}</div></div>`).join(''));
     }
 
-    function buildChips() { const M = { sg1: SDB.nasal, sg2: SDB.skin, sg3: SDB.resp, sg4: SDB.gut }; for (const [id, arr] of Object.entries(M)) setH(id, arr.map(s => `<button class="chip" id="${s.id}" onclick="tog('${s.id}')"><span class="chip-box" id="cb_${s.id}"></span>${s.ic} ${s.l}</button>`).join('')); }
-    function tog(id) { if (sel.has(id)) { sel.delete(id); $(id).classList.remove('sel'); $('cb_' + id).textContent = ''; } else { sel.add(id); $(id).classList.add('sel'); $('cb_' + id).textContent = '✓'; } }
-    function setAS(n) { ['aS1', 'aS2', 'aS3'].forEach((id, i) => $(id).className = 'as' + (i + 1 === n ? ' on' : i + 1 < n ? ' dn' : '')); }
-    function aN(s) { if (s === 1 && !sel.size) { alert('กรุณาเลือกอาการอย่างน้อย 1 อาการ'); return; } hide('ap' + s); show('ap' + (s + 1)); setAS(s + 1); }
-    function aB(s) { hide('ap' + s); show('ap' + (s - 1)); setAS(s - 1); }
-    function resetA() { sel.clear(); document.querySelectorAll('.chip').forEach(b => b.classList.remove('sel')); document.querySelectorAll('.chip-box').forEach(c => c.textContent = '');['ap1', 'ap2', 'ap3'].forEach(p => $(p) && $(p).classList.add('hidden')); show('ap1'); hide('aRes'); setAS(1); }
+    function buildChips() {const M = {sg1: SDB.nasal, sg2: SDB.skin, sg3: SDB.resp, sg4: SDB.gut}; for (const [id, arr] of Object.entries(M)) setH(id, arr.map(s => `<button class="chip" id="${s.id}" onclick="tog('${s.id}')"><span class="chip-box" id="cb_${s.id}"></span>${s.ic} ${s.l}</button>`).join(''));}
+    function tog(id) {if (sel.has(id)) {sel.delete(id); $(id).classList.remove('sel'); $('cb_' + id).textContent = '';} else {sel.add(id); $(id).classList.add('sel'); $('cb_' + id).textContent = '✓';} }
+    function setAS(n) {['aS1', 'aS2', 'aS3'].forEach((id, i) => $(id).className = 'as' + (i + 1 === n ? ' on' : i + 1 < n ? ' dn' : ''));}
+    function aN(s) {if (s === 1 && !sel.size) {alert('กรุณาเลือกอาการอย่างน้อย 1 อาการ'); return;} hide('ap' + s); show('ap' + (s + 1)); setAS(s + 1);}
+    function aB(s) {hide('ap' + s); show('ap' + (s - 1)); setAS(s - 1);}
+    function resetA() {sel.clear(); document.querySelectorAll('.chip').forEach(b => b.classList.remove('sel')); document.querySelectorAll('.chip-box').forEach(c => c.textContent = '');['ap1', 'ap2', 'ap3'].forEach(p => $(p) && $(p).classList.add('hidden')); show('ap1'); hide('aRes'); setAS(1);}
     function calcSc() {
       const syms = ALL.filter(s => sel.has(s.id)); const sc = Object.fromEntries(Object.keys(TY).map(t => [t, 0])); syms.forEach(s => Object.entries(s.w).forEach(([t, w]) => sc[t] += w));
-      const fam = parseFloat(CU.fam) || 0; if (fam > 0) { sc.rhinitis += fam * 2; sc.asthma += fam * 1.5; sc.eczema += fam; }
-      if (CU.pet === '1') { sc.rhinitis += 1.5; sc.asthma += 1; }
-      const en = v('aEnv'); if (en === 'urban') { sc.dust += 2; sc.asthma += 1; }
-      const se = v('aSeas'); if (se === 'spring' || se === 'rainy') { sc.pollen += 2; sc.rhinitis += 1; } if (se === 'night') sc.dust += 2;
+      const fam = parseFloat(CU.fam) || 0; if (fam > 0) {sc.rhinitis += fam * 2; sc.asthma += fam * 1.5; sc.eczema += fam;}
+      if (CU.pet === '1') {sc.rhinitis += 1.5; sc.asthma += 1;}
+      const en = v('aEnv'); if (en === 'urban') {sc.dust += 2; sc.asthma += 1;}
+      const se = v('aSeas'); if (se === 'spring' || se === 'rainy') {sc.pollen += 2; sc.rhinitis += 1;} if (se === 'night') sc.dust += 2;
       const sv = parseInt(v('aSev')) || 5; Object.keys(sc).forEach(t => sc[t] *= (0.6 + sv * .08));
       const mx = Math.max(...Object.values(sc), 1); const nm = {}; Object.keys(sc).forEach(t => nm[t] = Math.min(98, Math.max(2, Math.round(sc[t] / mx * 88 + Math.random() * 4)))); return nm;
     }
     function doAssess() {
       hide('ap2'); show('ap3'); setAS(3); show('aLoad'); hide('aRes');
-      const msgs = ['กำลังประมวลผล...', 'เปรียบเทียบฐานข้อมูล...', 'ประเมินปัจจัยเสี่ยง...', 'กำลังสรุปผล...']; let mi = 0; const iv = setInterval(() => { mi = (mi + 1) % msgs.length; $('aLm').textContent = msgs[mi]; }, 750);
+      const msgs = ['กำลังประมวลผล...', 'เปรียบเทียบฐานข้อมูล...', 'ประเมินปัจจัยเสี่ยง...', 'กำลังสรุปผล...']; let mi = 0; const iv = setInterval(() => {mi = (mi + 1) % msgs.length; $('aLm').textContent = msgs[mi];}, 750);
       const syms = ALL.filter(s => sel.has(s.id)); const sc = calcSc(); const sorted = Object.entries(sc).sort((a, b) => b[1] - a[1]); const t5 = sorted.slice(0, 5); const mv = t5[0][1]; const rsk = mv >= 65 ? 'hi' : mv >= 35 ? 'med' : 'lo';
-      lSc = sc; lSym = syms; hist.push({ u: CU.email, dt: new Date().toLocaleDateString('th-TH'), r: rsk, topT: TY[t5[0][0]].n, syms: syms.map(s => s.l), sev: v('aSev') }); saveLS();
-      setTimeout(() => { clearInterval(iv); hide('aLoad'); show('aRes'); renderRes(rsk, syms, t5); callAI(syms, t5, 'assess'); buildDash(); buildNotifs(); }, 2600);
+      lSc = sc; lSym = syms; hist.push({u: CU.email, dt: new Date().toLocaleDateString('th-TH'), r: rsk, topT: TY[t5[0][0]].n, syms: syms.map(s => s.l), sev: v('aSev')}); saveLS();
+      setTimeout(() => {clearInterval(iv); hide('aLoad'); show('aRes'); renderRes(rsk, syms, t5); callAI(syms, t5, 'assess'); buildDash(); buildNotifs();}, 2600);
     }
     function renderRes(rsk, syms, t5) {
-      const RC = { hi: { cls: 'rhi-b', ic: '🚨', ti: 'ความเสี่ยงสูง — แนะนำพบแพทย์', ds: 'พบอาการหลายอย่างที่บ่งชี้โรคภูมิแพ้ ควรพบแพทย์ผู้เชี่ยวชาญโดยเร็ว' }, med: { cls: 'rmed-b', ic: '⚠️', ti: 'ความเสี่ยงปานกลาง — ควรติดตาม', ds: 'มีอาการบางส่วนสอดคล้องกับโรคภูมิแพ้ ติดตามและพบแพทย์หากแย่ลง' }, lo: { cls: 'rlo-b', ic: '✅', ti: 'ความเสี่ยงต่ำ', ds: 'อาการอาจเกิดจากสาเหตุอื่น ควรปรึกษาแพทย์หากยังกังวล' } }[rsk];
+      const RC = {hi: {cls: 'rhi-b', ic: '🚨', ti: 'ความเสี่ยงสูง — แนะนำพบแพทย์', ds: 'พบอาการหลายอย่างที่บ่งชี้โรคภูมิแพ้ ควรพบแพทย์ผู้เชี่ยวชาญโดยเร็ว'}, med: {cls: 'rmed-b', ic: '⚠️', ti: 'ความเสี่ยงปานกลาง — ควรติดตาม', ds: 'มีอาการบางส่วนสอดคล้องกับโรคภูมิแพ้ ติดตามและพบแพทย์หากแย่ลง'}, lo: {cls: 'rlo-b', ic: '✅', ti: 'ความเสี่ยงต่ำ', ds: 'อาการอาจเกิดจากสาเหตุอื่น ควรปรึกษาแพทย์หากยังกังวล'}}[rsk];
       setH('aRBan', `<div class="rban ${RC.cls}" style="margin-bottom:1rem"><span class="rb-ic">${RC.ic}</span><div><div class="rb-ti">${RC.ti}</div><div class="rb-ds">${RC.ds}</div></div></div>`);
       setH('aInfo', `<div class="sc"><div class="sc-ic" style="background:var(--tl)">🩺</div><div class="sc-l">อาการ</div><div class="sc-v">${syms.length}</div><div class="sc-s">รายการ</div></div><div class="sc"><div class="sc-ic" style="background:var(--al)">📊</div><div class="sc-l">ความรุนแรง</div><div class="sc-v">${v('aSev')}/10</div></div><div class="sc"><div class="sc-ic" style="background:var(--ol)">🔬</div><div class="sc-l">ประเภทน่าสงสัย</div><div class="sc-v">${t5.filter(([, vv]) => vv >= 30).length}</div><div class="sc-s">ประเภท</div></div>`);
       setH('aPbars', t5.map(([t, val]) => `<div class="pb-row"><span class="pb-nm">${TY[t].n}</span><div class="pb-bg"><div class="pb-fill" style="width:0%;background:${TY[t].c}" data-w="${val}"></div></div><span class="pb-pct">${val}%</span></div>`).join(''));
       setTimeout(() => document.querySelectorAll('.pb-fill').forEach(el => el.style.width = el.getAttribute('data-w') + '%'), 80);
     }
-    function initDPicker() { const w = $('dSymPick'); if (!w || w.dataset.built) return; w.dataset.built = 1; const sh = ALL.slice(0, 12); w.innerHTML = sh.map(s => `<button data-id="${s.id}" onclick="this.classList.toggle('dsel');this.style.background=this.classList.contains('dsel')?'var(--tl)':'';this.style.borderColor=this.classList.contains('dsel')?'var(--t)':'var(--sm)'" style="padding:5px 11px;border-radius:999px;font-size:12px;border:1.5px solid var(--sm);background:var(--w);cursor:pointer;transition:all .15s">${s.ic} ${s.l}</button>`).join(''); }
+    function initDPicker() {const w = $('dSymPick'); if (!w || w.dataset.built) return; w.dataset.built = 1; const sh = ALL.slice(0, 12); w.innerHTML = sh.map(s => `<button data-id="${s.id}" onclick="this.classList.toggle('dsel');this.style.background=this.classList.contains('dsel')?'var(--tl)':'';this.style.borderColor=this.classList.contains('dsel')?'var(--t)':'var(--sm)'" style="padding:5px 11px;border-radius:999px;font-size:12px;border:1.5px solid var(--sm);background:var(--w);cursor:pointer;transition:all .15s">${s.ic} ${s.l}</button>`).join('');}
     function saveDiary() {
       const date = v('dDate') || new Date().toISOString().slice(0, 10); const level = parseInt(v('dLevel')) || 3; const syms = [];
-      document.querySelectorAll('#dSymPick button.dsel').forEach(b => { const s = ALL.find(x => x.id === b.dataset.id); if (s) syms.push(s.l); });
-      diary.unshift({ id: Date.now(), date, level, syms, trigger: v('dTrig'), med: v('dMed'), note: v('dNote') });
+      document.querySelectorAll('#dSymPick button.dsel').forEach(b => {const s = ALL.find(x => x.id === b.dataset.id); if (s) syms.push(s.l);});
+      diary.unshift({id: Date.now(), date, level, syms, trigger: v('dTrig'), med: v('dMed'), note: v('dNote')});
       saveLS(); clearDForm(); buildDiaryList(); buildDash();
       show('dSaved'); setTimeout(() => hide('dSaved'), 2500);
     }
-    function clearDForm() { $('dDate').value = new Date().toISOString().slice(0, 10); $('dLevel').value = '3'; $('dTrig').value = ''; $('dMed').value = ''; $('dNote').value = ''; const w = $('dSymPick'); if (w) { w.dataset.built = ''; initDPicker(); } }
+    function clearDForm() {$('dDate').value = new Date().toISOString().slice(0, 10); $('dLevel').value = '3'; $('dTrig').value = ''; $('dMed').value = ''; $('dNote').value = ''; const w = $('dSymPick'); if (w) {w.dataset.built = ''; initDPicker();} }
     function buildDiaryList() {
-      if (!diary.length) { setH('diaryList', '<div class="empty-s"><div class="es-ic">📓</div><h3>ยังไม่มีบันทึก</h3><p>เพิ่มบันทึกอาการด้านบนเพื่อเริ่มติดตามสุขภาพ</p></div>'); return; }
+      if (!diary.length) {setH('diaryList', '<div class="empty-s"><div class="es-ic">📓</div><h3>ยังไม่มีบันทึก</h3><p>เพิ่มบันทึกอาการด้านบนเพื่อเริ่มติดตามสุขภาพ</p></div>'); return;}
       const lc = ['', '#0D9373', '#15803D', '#D97706', '#E5533A', '#B91C1C']; const ll = ['', 'ไม่มีอาการ', 'เล็กน้อย', 'ปานกลาง', 'รุนแรง', 'รุนแรงมาก'];
       setH('diaryList', diary.map((d, i) => `<div class="diary-entry"><div class="diary-hd"><div><span class="diary-dt">${d.date}</span><span style="margin-left:8px;font-size:12px;font-weight:700;color:${lc[d.level] || '#475569'}">● ${ll[d.level] || '?'}</span></div><button onclick="if(confirm('ลบบันทึกนี้?')){diary.splice(${i},1);saveLS();buildDiaryList();buildDash()}" style="padding:3px 9px;border-radius:6px;font-size:11px;border:1px solid var(--cm);background:var(--cl);color:var(--c);cursor:pointer">ลบ</button></div><div class="diary-body">${d.note || '—'}</div><div class="diary-tg">${(d.syms || []).map(s => `<span class="tag tg-s">${s}</span>`).join('')}${d.trigger ? `<span class="tag tg-a">⚡ ${d.trigger}</span>` : ''}${d.med ? `<span class="tag tg-o">💊 ${d.med}</span>` : ''}</div></div>`).join(''));
     }
 
     function initChat() {
-      chatH = [{ r: 'ai', t: 'สวัสดีครับ ผมคือผู้ช่วยแพทย์ AI ด้านโรคภูมิแพ้ 🫁\nถามได้เลยเกี่ยวกับ: อาการและประเภทโรคภูมิแพ้, วิธีดูแลตัวเองและป้องกัน, ยาและการรักษาเบื้องต้น, หรือเมื่อไหร่ควรพบแพทย์' }];
+      chatH = [{r: 'ai', t: 'สวัสดีครับ ผมคือผู้ช่วยแพทย์ AI ด้านโรคภูมิแพ้ 🫁\nถามได้เลยเกี่ยวกับ: อาการและประเภทโรคภูมิแพ้, วิธีดูแลตัวเองและป้องกัน, ยาและการรักษาเบื้องต้น, หรือเมื่อไหร่ควรพบแพทย์'}];
       renderChat();
       setH('chatQs', '<span style="font-size:12px;color:var(--ss);align-self:center;margin-right:4px;font-weight:600">คำถามด่วน:</span>' + QQS.map(q => `<button class="cq" onclick="sendQ('${q}')">${q}</button>`).join(''));
     }
-    function renderChat() { const c = $('chatMsgs'); if (!c) return; c.innerHTML = chatH.map(m => `<div><div class="msg-who">${m.r === 'ai' ? '🤖 AllergyGuard AI' : '👤 คุณ'}</div><div class="msg msg-${m.r}">${m.t.replace(/\n/g, '<br>')}</div></div>`).join(''); c.scrollTop = c.scrollHeight; }
-    function sendQ(q) { $('chatInp').value = q; sendChat(); }
+    function renderChat() {const c = $('chatMsgs'); if (!c) return; c.innerHTML = chatH.map(m => `<div><div class="msg-who">${m.r === 'ai' ? '🤖 AllergyGuard AI' : '👤 คุณ'}</div><div class="msg msg-${m.r}">${m.t.replace(/\n/g, '<br>')}</div></div>`).join(''); c.scrollTop = c.scrollHeight;}
+    function sendQ(q) {$('chatInp').value = q; sendChat();}
     async function sendChat() {
       const inp = $('chatInp'); const q = inp.value.trim(); if (!q) return; inp.value = '';
-      chatH.push({ r: 'user', t: q }); chatH.push({ r: 'ai', t: '...' }); renderChat();
+      chatH.push({r: 'user', t: q}); chatH.push({r: 'ai', t: '...'}); renderChat();
       const u = CU; const top = lSc ? Object.entries(lSc).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([t]) => TY[t].n).join(',') : '-';
       const sys = `คุณเป็นผู้ช่วยแพทย์ AI ด้านโรคภูมิแพ้ ชื่อว่า AllergyGuard AI ตอบเป็นภาษาไทยที่เข้าใจง่าย กระชับ เป็นกันเอง
 ข้อมูลผู้ใช้: ${u.name} อายุ ${u.age || '?'} ปี แพ้อาหาร: ${u.fa || 'ไม่มี'} แพ้ยา: ${u.da || 'ไม่มี'} ประเมินล่าสุด: ${top}
 ตอบไม่เกิน 5 ประโยค ถ้าเรื่องฉุกเฉินให้แนะนำพบแพทย์ทันที`;
       try {
-        const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 500, messages: [{ role: 'user', content: sys + '\n\nคำถาม: ' + q }] }) });
-        const data = await res.json(); chatH[chatH.length - 1] = { r: 'ai', t: data.content?.find(c => c.type === 'text')?.text || 'ขออภัย ไม่สามารถตอบได้' };
-      } catch (e) { chatH[chatH.length - 1] = { r: 'ai', t: 'ไม่สามารถเชื่อมต่อได้ กรุณาลองใหม่' }; }
+        const res = await fetch('https://api.anthropic.com/v1/messages', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({model: 'claude-sonnet-4-6', max_tokens: 500, messages: [{role: 'user', content: sys + '\n\nคำถาม: ' + q}]})});
+        const data = await res.json(); chatH[chatH.length - 1] = {r: 'ai', t: data.content?.find(c => c.type === 'text')?.text || 'ขออภัย ไม่สามารถตอบได้'};
+      } catch (e) {chatH[chatH.length - 1] = {r: 'ai', t: 'ไม่สามารถเชื่อมต่อได้ กรุณาลองใหม่'};}
       renderChat();
     }
 
     function buildPlan() {
       const u = CU; const top = lSc ? Object.entries(lSc).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([t]) => TY[t].n).join(', ') : '-';
       const plans = [
-        { ic: '🔍', ti: 'สัปดาห์ที่ 1 — ประเมินและเตรียมตัว', ds: 'ทำการประเมินอาการครบถ้วน เริ่มบันทึกอาการทุกวัน ซื้อเครื่องกรองอากาศ HEPA' },
-        { ic: '🏠', ti: 'สัปดาห์ที่ 2 — ปรับสภาพแวดล้อม', ds: 'ซักผ้าปูที่นอนด้วยน้ำร้อน ดูดฝุ่นบ้านทั้งหลัง ควบคุมความชื้น 40-50%' },
-        { ic: '💊', ti: 'สัปดาห์ที่ 3 — เริ่มใช้ยาและดูแลตัวเอง', ds: 'ล้างจมูกด้วยน้ำเกลือ Isotonic เช้า-เย็น ใช้ยาแก้แพ้ตามที่แพทย์แนะนำ' },
-        { ic: '🏥', ti: 'สัปดาห์ที่ 4 — นัดพบแพทย์', ds: 'นำผลบันทึกอาการ 4 สัปดาห์ไปพบแพทย์ผู้เชี่ยวชาญเพื่อวินิจฉัยและวางแผนรักษา' },
-        { ic: '🔄', ti: 'เดือนที่ 2 — ทบทวนและปรับแผน', ds: 'ทบทวนผลการรักษา ปรับยาตามคำแนะนำแพทย์ วิเคราะห์สิ่งกระตุ้นจากบันทึก' },
-        { ic: '📊', ti: 'เดือนที่ 3 — ติดตามผลระยะยาว', ds: 'พบแพทย์ติดตาม ตรวจ IgE และ Skin Prick Test พิจารณา Immunotherapy' },
+        {ic: '🔍', ti: 'สัปดาห์ที่ 1 — ประเมินและเตรียมตัว', ds: 'ทำการประเมินอาการครบถ้วน เริ่มบันทึกอาการทุกวัน ซื้อเครื่องกรองอากาศ HEPA'},
+        {ic: '🏠', ti: 'สัปดาห์ที่ 2 — ปรับสภาพแวดล้อม', ds: 'ซักผ้าปูที่นอนด้วยน้ำร้อน ดูดฝุ่นบ้านทั้งหลัง ควบคุมความชื้น 40-50%'},
+        {ic: '💊', ti: 'สัปดาห์ที่ 3 — เริ่มใช้ยาและดูแลตัวเอง', ds: 'ล้างจมูกด้วยน้ำเกลือ Isotonic เช้า-เย็น ใช้ยาแก้แพ้ตามที่แพทย์แนะนำ'},
+        {ic: '🏥', ti: 'สัปดาห์ที่ 4 — นัดพบแพทย์', ds: 'นำผลบันทึกอาการ 4 สัปดาห์ไปพบแพทย์ผู้เชี่ยวชาญเพื่อวินิจฉัยและวางแผนรักษา'},
+        {ic: '🔄', ti: 'เดือนที่ 2 — ทบทวนและปรับแผน', ds: 'ทบทวนผลการรักษา ปรับยาตามคำแนะนำแพทย์ วิเคราะห์สิ่งกระตุ้นจากบันทึก'},
+        {ic: '📊', ti: 'เดือนที่ 3 — ติดตามผลระยะยาว', ds: 'พบแพทย์ติดตาม ตรวจ IgE และ Skin Prick Test พิจารณา Immunotherapy'},
       ];
       const am = ['ล้างจมูกด้วยน้ำเกลือ Isotonic', 'รับประทานยาแก้แพ้ (ถ้ามี)', 'ดูค่าฝุ่น AQI ก่อนออกนอกบ้าน', 'สวมหน้ากากเมื่อ AQI > 100'];
       const pm = ['ล้างจมูกรอบเย็น', 'อาบน้ำเพื่อล้างสารก่อภูมิแพ้', 'เปลี่ยนเสื้อผ้าก่อนนอน', 'บันทึกอาการในแอป'];
@@ -2546,68 +2546,68 @@
       </tbody></table></div>
     </div>`);
     }
-    function tpChk(k, el) { pChk[k] = !pChk[k]; el.classList.toggle('done', pChk[k]); el.textContent = pChk[k] ? '✓' : ''; saveLS(); }
+    function tpChk(k, el) {pChk[k] = !pChk[k]; el.classList.toggle('done', pChk[k]); el.textContent = pChk[k] ? '✓' : ''; saveLS();}
 
     function buildRec() {
       if (!CU) return; const u = CU; const top = lSc ? Object.entries(lSc).sort((a, b) => b[1] - a[1]).slice(0, 3) : [];
       $('recSub').textContent = lSc ? 'สร้างจากผลการประเมินล่าสุดและโปรไฟล์สุขภาพของคุณ' : 'คำแนะนำทั่วไปสำหรับผู้มีความเสี่ยงโรคภูมิแพ้';
       setH('recAl', lSc ? '<div class="al al-ok">📊 คำแนะนำนี้ปรับตามผลการประเมินและข้อมูลส่วนตัวของคุณโดยเฉพาะ</div>' : '<div class="al al-info">💡 ทำการประเมินอาการก่อนเพื่อรับคำแนะนำที่แม่นยำขึ้น</div>');
       const cards = [
-        { ic: '🏥', ti: 'การรักษาเบื้องต้น', li: ['ยาแก้แพ้ (Antihistamine) สำหรับอาการทั่วไป', 'ยาพ่นจมูก Corticosteroid สำหรับจมูกอักเสบ', 'ยาพ่นขยายหลอดลมสำหรับโรคหืด', 'ครีมทา Corticosteroid สำหรับผื่นภูมิแพ้'] },
-        { ic: '🔬', ti: 'การตรวจเพิ่มเติม', li: ['ตรวจเลือด IgE (Total & Specific)', 'Skin Prick Test ทดสอบสารก่อภูมิแพ้', 'Spirometry วัดสมรรถภาพปอด', 'Patch Test สำหรับผื่นสัมผัส'] },
-        { ic: '🌿', ti: 'ดูแลตัวเองทุกวัน', li: ['ล้างจมูกด้วยน้ำเกลือ Isotonic เช้า-เย็น', 'ใช้เครื่องกรองอากาศ HEPA ในห้องนอน', 'สวมหน้ากากเมื่อฝุ่นสูง', 'บันทึกอาการในแอปทุกวัน'] },
-        { ic: '🍎', ti: 'โภชนาการต้านการอักเสบ', li: ['ปลาทะเลน้ำลึก Omega-3 สัปดาห์ละ 2-3 ครั้ง', 'ผักผลไม้สีสด วิตามิน C, D, สังกะสี', 'ลดอาหารแปรรูป น้ำตาล ไขมันทรานส์', u.fa ? '⚠️ หลีกเลี่ยง: ' + u.fa : 'อ่านฉลากก่อนรับประทานทุกครั้ง'] },
-        { ic: '🏃', ti: 'การออกกำลังกาย', li: ['ว่ายน้ำ เหมาะสำหรับผู้เป็นหืด', 'เดิน/จ็อกกิ้ง ช่วงเช้าตรู่ก่อนเกสรสูง', 'โยคะและการหายใจลึก ลดการอักเสบ', 'หลีกเลี่ยงออกกำลังกายนอกบ้านเมื่อ AQI สูง'] },
-        { ic: '😴', ti: 'การพักผ่อนและลดเครียด', li: ['นอนหลับ 7–8 ชั่วโมงต่อคืนสม่ำเสมอ', 'ห้องนอนเย็น สะอาด ปราศจากสัตว์เลี้ยง', 'ฝึกสมาธิหรือหายใจลึก 10 นาทีต่อวัน', 'ลดความเครียดด้วยกิจกรรมที่ชอบ'] },
+        {ic: '🏥', ti: 'การรักษาเบื้องต้น', li: ['ยาแก้แพ้ (Antihistamine) สำหรับอาการทั่วไป', 'ยาพ่นจมูก Corticosteroid สำหรับจมูกอักเสบ', 'ยาพ่นขยายหลอดลมสำหรับโรคหืด', 'ครีมทา Corticosteroid สำหรับผื่นภูมิแพ้']},
+        {ic: '🔬', ti: 'การตรวจเพิ่มเติม', li: ['ตรวจเลือด IgE (Total & Specific)', 'Skin Prick Test ทดสอบสารก่อภูมิแพ้', 'Spirometry วัดสมรรถภาพปอด', 'Patch Test สำหรับผื่นสัมผัส']},
+        {ic: '🌿', ti: 'ดูแลตัวเองทุกวัน', li: ['ล้างจมูกด้วยน้ำเกลือ Isotonic เช้า-เย็น', 'ใช้เครื่องกรองอากาศ HEPA ในห้องนอน', 'สวมหน้ากากเมื่อฝุ่นสูง', 'บันทึกอาการในแอปทุกวัน']},
+        {ic: '🍎', ti: 'โภชนาการต้านการอักเสบ', li: ['ปลาทะเลน้ำลึก Omega-3 สัปดาห์ละ 2-3 ครั้ง', 'ผักผลไม้สีสด วิตามิน C, D, สังกะสี', 'ลดอาหารแปรรูป น้ำตาล ไขมันทรานส์', u.fa ? '⚠️ หลีกเลี่ยง: ' + u.fa : 'อ่านฉลากก่อนรับประทานทุกครั้ง']},
+        {ic: '🏃', ti: 'การออกกำลังกาย', li: ['ว่ายน้ำ เหมาะสำหรับผู้เป็นหืด', 'เดิน/จ็อกกิ้ง ช่วงเช้าตรู่ก่อนเกสรสูง', 'โยคะและการหายใจลึก ลดการอักเสบ', 'หลีกเลี่ยงออกกำลังกายนอกบ้านเมื่อ AQI สูง']},
+        {ic: '😴', ti: 'การพักผ่อนและลดเครียด', li: ['นอนหลับ 7–8 ชั่วโมงต่อคืนสม่ำเสมอ', 'ห้องนอนเย็น สะอาด ปราศจากสัตว์เลี้ยง', 'ฝึกสมาธิหรือหายใจลึก 10 นาทีต่อวัน', 'ลดความเครียดด้วยกิจกรรมที่ชอบ']},
       ];
       setH('recCards', cards.map(c => `<div class="rc"><div class="rc-ic">${c.ic}</div><h3>${c.ti}</h3><ul>${c.li.map(i => `<li>${i}</li>`).join('')}</ul></div>`).join(''));
       if (lSym.length > 0) callAI(lSym, top, 'rec'); else $('recAI').textContent = 'กรุณาทำการประเมินอาการก่อนเพื่อรับคำแนะนำส่วนตัว';
     }
 
-    function buildPrevTbl() { setH('prevTbl', PTASKS.map((t, i) => `<tr><td><span class="tag ${t.tg}">${t.freq}</span></td><td>${t.task}</td><td>${t.res}</td><td><div class="pchk ${pChk['pv_' + i] ? 'done' : ''}" onclick="tpChk('pv_${i}',this)" style="margin:0 auto">${pChk['pv_' + i] ? '✓' : ''}</div></td></tr>`).join('')); }
+    function buildPrevTbl() {setH('prevTbl', PTASKS.map((t, i) => `<tr><td><span class="tag ${t.tg}">${t.freq}</span></td><td>${t.task}</td><td>${t.res}</td><td><div class="pchk ${pChk['pv_' + i] ? 'done' : ''}" onclick="tpChk('pv_${i}',this)" style="margin:0 auto">${pChk['pv_' + i] ? '✓' : ''}</div></td></tr>`).join(''));}
 
     function buildProf() {
       const u = CU; $('pAv').textContent = u.name[0]; $('pNm').textContent = u.name; $('pEm').textContent = u.email;
       const bmi = u.wt && u.ht ? (u.wt / ((u.ht / 100) ** 2)).toFixed(1) : null;
       $('pMt').textContent = [u.age ? u.age + ' ปี' : '', u.sex, u.bld ? 'กรุ๊ป ' + u.bld : ''].filter(Boolean).join(' · ');
-      const tgs = []; if (u.fa) tgs.push(`<span class="tag tg-c">⚠️ แพ้: ${u.fa}</span>`); if (u.da) tgs.push(`<span class="tag tg-a">💊 แพ้ยา: ${u.da}</span>`); if (u.dis) tgs.push(`<span class="tag tg-o">🏥 ${u.dis}</span>`); tgs.push(`<span class="tag tg-${u.fam === '2' ? 'c' : u.fam === '1' ? 'a' : 't'}">🧬 เสี่ยง: ${{ 0: 'ต่ำ', '0.5': 'กลาง', 1: 'กลาง', 2: 'สูง' }[u.fam]}</span>`);
+      const tgs = []; if (u.fa) tgs.push(`<span class="tag tg-c">⚠️ แพ้: ${u.fa}</span>`); if (u.da) tgs.push(`<span class="tag tg-a">💊 แพ้ยา: ${u.da}</span>`); if (u.dis) tgs.push(`<span class="tag tg-o">🏥 ${u.dis}</span>`); tgs.push(`<span class="tag tg-${u.fam === '2' ? 'c' : u.fam === '1' ? 'a' : 't'}">🧬 เสี่ยง: ${{0: 'ต่ำ', '0.5': 'กลาง', 1: 'กลาง', 2: 'สูง'}[u.fam]}</span>`);
       setH('pTags', tgs.join(''));
-      const fL = { '0': 'ไม่มี', '0.5': 'ไม่แน่ใจ', '1': 'มี (พ่อหรือแม่)', '2': 'มี (ทั้งพ่อและแม่)' };
+      const fL = {'0': 'ไม่มี', '0.5': 'ไม่แน่ใจ', '1': 'มี (พ่อหรือแม่)', '2': 'มี (ทั้งพ่อและแม่)'};
       setH('pH', [['น้ำหนัก', u.wt ? u.wt + ' กก.' : '—'], ['ส่วนสูง', u.ht ? u.ht + ' ซม.' : '—'], ['BMI', bmi || '—'], ['ประวัติครอบครัว', fL[u.fam] || '—'], ['แพ้อาหาร', u.fa || 'ไม่มี'], ['แพ้ยา', u.da || 'ไม่มี'], ['โรคประจำตัว', u.dis || 'ไม่มี']].map(([k, v]) => `<div class="prow"><span class="pk">${k}</span><span class="pv">${v}</span></div>`).join(''));
-      const eL = { urban: 'เมือง/มลภาวะสูง', suburban: 'ชานเมือง', rural: 'ชนบท' }; const jL = { office: 'พนักงานออฟฟิศ', outdoor: 'งานนอกสถานที่', medical: 'บุคลากรการแพทย์', student: 'นักเรียน/นักศึกษา', farmer: 'เกษตรกร', other: 'อื่นๆ' };
+      const eL = {urban: 'เมือง/มลภาวะสูง', suburban: 'ชานเมือง', rural: 'ชนบท'}; const jL = {office: 'พนักงานออฟฟิศ', outdoor: 'งานนอกสถานที่', medical: 'บุคลากรการแพทย์', student: 'นักเรียน/นักศึกษา', farmer: 'เกษตรกร', other: 'อื่นๆ'};
       setH('pL', [['สภาพแวดล้อม', eL[u.env] || '—'], ['อาชีพ', jL[u.job] || '—'], ['สัตว์เลี้ยง', u.pet === '1' ? 'มี (ในบ้าน)' : u.pet === '0.5' ? 'มี (นอกบ้าน)' : 'ไม่มี'], ['ประเมิน', hist.length + ' ครั้ง'], ['บันทึก', diary.length + ' รายการ']].map(([k, v]) => `<div class="prow"><span class="pk">${k}</span><span class="pv">${v}</span></div>`).join(''));
-      const mh = hist.slice().reverse(); setH('histB', mh.length ? mh.map(h => `<tr><td>${h.dt}</td><td>${h.syms.slice(0, 3).map(s => `<span class="tag tg-s">${s}</span>`).join(' ')}</td><td><span class="tag ${h.r === 'hi' ? 'tg-c' : h.r === 'med' ? 'tg-a' : 'tg-t'}">${{ hi: 'สูง', med: 'ปานกลาง', lo: 'ต่ำ' }[h.r]}</span></td><td><span class="tag tg-o">${h.topT}</span></td><td>${h.sev || '—'}/10</td></tr>`).join('') : '<tr><td colspan="5" style="text-align:center;color:var(--ss);padding:1.5rem">ยังไม่มีประวัติ</td></tr>');
+      const mh = hist.slice().reverse(); setH('histB', mh.length ? mh.map(h => `<tr><td>${h.dt}</td><td>${h.syms.slice(0, 3).map(s => `<span class="tag tg-s">${s}</span>`).join(' ')}</td><td><span class="tag ${h.r === 'hi' ? 'tg-c' : h.r === 'med' ? 'tg-a' : 'tg-t'}">${{hi: 'สูง', med: 'ปานกลาง', lo: 'ต่ำ'}[h.r]}</span></td><td><span class="tag tg-o">${h.topT}</span></td><td>${h.sev || '—'}/10</td></tr>`).join('') : '<tr><td colspan="5" style="text-align:center;color:var(--ss);padding:1.5rem">ยังไม่มีประวัติ</td></tr>');
     }
-    function openEditModal() { const u = CU; $('eName').value = u.name; $('eAge').value = u.age; $('eWt').value = u.wt; $('eHt').value = u.ht; $('eEnv').value = u.env; $('ePet').value = u.pet; $('eFA').value = u.fa || ''; $('eDA').value = u.da || ''; $('eDis').value = u.dis || ''; }
-    function saveProfile() { Object.assign(CU, { name: v('eName'), age: v('eAge'), wt: v('eWt'), ht: v('eHt'), env: v('eEnv'), pet: v('ePet'), fa: v('eFA'), da: v('eDA'), dis: v('eDis') }); const i = users.findIndex(x => x.email === CU.email); if (i >= 0) users[i] = CU; saveU(); $('navAv').textContent = CU.name[0]; $('navNm').textContent = CU.name; closeModal('editModal'); buildProf(); buildDash(); }
+    function openEditModal() {const u = CU; $('eName').value = u.name; $('eAge').value = u.age; $('eWt').value = u.wt; $('eHt').value = u.ht; $('eEnv').value = u.env; $('ePet').value = u.pet; $('eFA').value = u.fa || ''; $('eDA').value = u.da || ''; $('eDis').value = u.dis || '';}
+    function saveProfile() {Object.assign(CU, {name: v('eName'), age: v('eAge'), wt: v('eWt'), ht: v('eHt'), env: v('eEnv'), pet: v('ePet'), fa: v('eFA'), da: v('eDA'), dis: v('eDis')}); const i = users.findIndex(x => x.email === CU.email); if (i >= 0) users[i] = CU; saveU(); $('navAv').textContent = CU.name[0]; $('navNm').textContent = CU.name; closeModal('editModal'); buildProf(); buildDash();}
     async function genHealthSum() {
       const u = CU; setH('profAI', '<div class="typing"><span></span><span></span><span></span></div>');
       const bmi = u.wt && u.ht ? ((u.wt / ((u.ht / 100) ** 2)).toFixed(1)) : 'ไม่ระบุ';
-      const fL = { '0': 'ไม่มี', '0.5': 'ไม่แน่ใจ', '1': 'มีพ่อหรือแม่', '2': 'มีทั้งสองคน' };
+      const fL = {'0': 'ไม่มี', '0.5': 'ไม่แน่ใจ', '1': 'มีพ่อหรือแม่', '2': 'มีทั้งสองคน'};
       const top = lSc ? Object.entries(lSc).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([t, val]) => TY[t].n + ' ' + val + '%').join(', ') : 'ยังไม่ประเมิน';
       const p = `คุณเป็นแพทย์ผู้เชี่ยวชาญ สรุปสุขภาพสำหรับ: ${u.name} อายุ ${u.age || '?'} ปี เพศ ${u.sex || '?'} BMI ${bmi}\nประวัติครอบครัว: ${fL[u.fam] || '?'} | แพ้อาหาร: ${u.fa || 'ไม่มี'} | แพ้ยา: ${u.da || 'ไม่มี'}\nโรคประจำตัว: ${u.dis || 'ไม่มี'} | สภาพแวดล้อม: ${u.env} | สัตว์เลี้ยง: ${u.pet === '1' ? 'มีในบ้าน' : 'ไม่มี'}\nประเมินแล้ว: ${hist.length} ครั้ง | บันทึก: ${diary.length} รายการ | ผลล่าสุด: ${top}\nเขียนสรุปสุขภาพภาษาไทย 3-4 ประโยค ประเมินความเสี่ยงโดยรวม คำแนะนำสำคัญ 2-3 ข้อ ไม่ใช้ header หรือ bullet`;
-      try { const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 600, messages: [{ role: 'user', content: p }] }) }); const data = await res.json(); $('profAI').textContent = data.content?.find(c => c.type === 'text')?.text || 'ไม่สามารถสร้างสรุปได้'; } catch (e) { $('profAI').textContent = 'ไม่สามารถเชื่อมต่อได้'; }
+      try {const res = await fetch('https://api.anthropic.com/v1/messages', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({model: 'claude-sonnet-4-6', max_tokens: 600, messages: [{role: 'user', content: p}]})}); const data = await res.json(); $('profAI').textContent = data.content?.find(c => c.type === 'text')?.text || 'ไม่สามารถสร้างสรุปได้';} catch (e) {$('profAI').textContent = 'ไม่สามารถเชื่อมต่อได้';}
     }
-    function exportData() { const data = { user: { ...CU, pass: '***' }, assessments: hist, diary, exported: new Date().toISOString() }; const b = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'allergyguard_data.json'; a.click(); }
+    function exportData() {const data = {user: {...CU, pass: '***'}, assessments: hist, diary, exported: new Date().toISOString()}; const b = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'allergyguard_data.json'; a.click();}
 
     function buildNotifs() {
       const ns = [];
-      if (hist.length && hist[hist.length - 1].r === 'hi') ns.push({ c: 'al-err', m: '🚨 ผลประเมินล่าสุดความเสี่ยงสูง — แนะนำพบแพทย์' });
-      if (CU.fa) ns.push({ c: 'al-warn', m: '⚠️ แพ้อาหาร: ' + CU.fa }); if (CU.da) ns.push({ c: 'al-warn', m: '⚠️ แพ้ยา: ' + CU.da });
-      if (!diary.find(d => d.date === new Date().toISOString().slice(0, 10))) ns.push({ c: 'al-info', m: '📓 ยังไม่ได้บันทึกอาการวันนี้' });
-      if (!hist.length) ns.push({ c: 'al-info', m: '🔍 ยังไม่เคยประเมินอาการ ลองเลยวันนี้!' });
+      if (hist.length && hist[hist.length - 1].r === 'hi') ns.push({c: 'al-err', m: '🚨 ผลประเมินล่าสุดความเสี่ยงสูง — แนะนำพบแพทย์'});
+      if (CU.fa) ns.push({c: 'al-warn', m: '⚠️ แพ้อาหาร: ' + CU.fa}); if (CU.da) ns.push({c: 'al-warn', m: '⚠️ แพ้ยา: ' + CU.da});
+      if (!diary.find(d => d.date === new Date().toISOString().slice(0, 10))) ns.push({c: 'al-info', m: '📓 ยังไม่ได้บันทึกอาการวันนี้'});
+      if (!hist.length) ns.push({c: 'al-info', m: '🔍 ยังไม่เคยประเมินอาการ ลองเลยวันนี้!'});
       $('ndot').style.display = ns.length ? '' : 'none';
       setH('notifList', ns.length ? ns.map(n => `<div class="al ${n.c}" style="margin-bottom:8px">${n.m}</div>`).join('') : '<div class="al al-ok">✅ ไม่มีการแจ้งเตือนใหม่</div>');
     }
 
-    function openModal(id) { if (id === 'editModal') openEditModal(); show(id); document.body.style.overflow = 'hidden'; }
-    function closeModal(id) { hide(id); document.body.style.overflow = ''; }
+    function openModal(id) {if (id === 'editModal') openEditModal(); show(id); document.body.style.overflow = 'hidden';}
+    function closeModal(id) {hide(id); document.body.style.overflow = '';}
 
     async function callAI(syms, top5, mode) {
       const u = CU; const sl = syms.map(s => s.l).join(', '); const tt = top5.slice(0, 3).map(([t]) => TY[t].n).join(', ');
-      const fL = { '0': 'ไม่มี', '0.5': 'ไม่แน่ใจ', '1': 'มีพ่อหรือแม่', '2': 'มีทั้งพ่อและแม่' };
-      const jL = { office: 'พนักงานออฟฟิศ', outdoor: 'นอกสถานที่', medical: 'บุคลากรการแพทย์', student: 'นักเรียน', farmer: 'เกษตรกร', other: 'อื่นๆ' };
-      const eL = { urban: 'เมือง/มลภาวะสูง', suburban: 'ชานเมือง', rural: 'ชนบท' };
+      const fL = {'0': 'ไม่มี', '0.5': 'ไม่แน่ใจ', '1': 'มีพ่อหรือแม่', '2': 'มีทั้งพ่อและแม่'};
+      const jL = {office: 'พนักงานออฟฟิศ', outdoor: 'นอกสถานที่', medical: 'บุคลากรการแพทย์', student: 'นักเรียน', farmer: 'เกษตรกร', other: 'อื่นๆ'};
+      const eL = {urban: 'เมือง/มลภาวะสูง', suburban: 'ชานเมือง', rural: 'ชนบท'};
       const rd = diary.slice(0, 5).map(d => `${d.date}:ระดับ${d.level} ${(d.syms || []).join(',')}`).join('; ');
       let prompt = '';
       if (mode === 'assess') {
@@ -2629,9 +2629,9 @@ ${u.name} | อายุ ${u.age || '?'} | อาชีพ ${jL[u.job] || u.job 
       const tid = mode === 'assess' ? 'aAI' : 'recAI';
       setH(tid, '<div class="typing"><span></span><span></span><span></span></div>');
       try {
-        const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] }) });
+        const res = await fetch('https://api.anthropic.com/v1/messages', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({model: 'claude-sonnet-4-6', max_tokens: 1000, messages: [{role: 'user', content: prompt}]})});
         const data = await res.json(); $(tid).textContent = data.content?.find(c => c.type === 'text')?.text || 'ไม่สามารถวิเคราะห์ได้';
-      } catch (e) { $(tid).textContent = 'ไม่สามารถเชื่อมต่อ AI ได้ กรุณาตรวจสอบอินเทอร์เน็ต'; }
+      } catch (e) {$(tid).textContent = 'ไม่สามารถเชื่อมต่อ AI ได้ กรุณาตรวจสอบอินเทอร์เน็ต';}
     }
 
     // Init
