@@ -23,8 +23,6 @@
         <div class="fg"><label>รหัสผ่าน</label><input type="password" id="lPw" placeholder="••••••••"
             onkeydown="if(event.key==='Enter')doLogin()"></div>
         <div id="lErr" class="err-box hidden">อีเมลหรือรหัสผ่านไม่ถูกต้อง</div>
-        <div class="rc-wrap"><div id="lCap" class="rc-box"></div></div>
-        <div id="lCapErr" class="err-box hidden">กรุณาติ๊ก "ฉันไม่ใช่โรบอต" ก่อนดำเนินการต่อ</div>
         <button class="btn-main" onclick="doLogin()">เข้าสู่ระบบ →</button>
         <div class="or-l">หรือ</div>
         <div class="sw-l">ยังไม่มีบัญชี? <a onclick="showAuth('reg')">สมัครฟรีเลย →</a></div>
@@ -32,9 +30,6 @@
       </div>
     </div>
   </div>
-  <script src="js/config.js"></script>
-  <script src="js/recaptcha.js"></script>
-  <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
   <script src="js/common.js"></script>
   <script src="js/login.js"></script>
 </body>
