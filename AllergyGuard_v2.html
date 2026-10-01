@@ -1750,7 +1750,7 @@
           <h1 class="auth-ttl">AllergyGuard</h1>
           <p class="auth-sub">ระบบดูแล ติดตาม และป้องกันโรคภูมิแพ้ครบวงจร</p>
         </div>
-        <div class="fg"><label>อีเมล</label><input type="email" id="lEm" placeholder="your@email.com"></div>
+        <div class="fg"><label>อีเมล</label><input type="email" id="lEm" placeholder="your@gmail.com"></div>
         <div class="fg"><label>รหัสผ่าน</label><input type="password" id="lPw" placeholder="••••••••"
             onkeydown="if(event.key==='Enter')doLogin()"></div>
         <div id="lErr" class="err-box hidden">อีเมลหรือรหัสผ่านไม่ถูกต้อง</div>
@@ -1776,7 +1776,7 @@
           <div class="step-cap">ขั้นตอน 1/3 — ข้อมูลบัญชี</div>
           <div class="fg"><label>ชื่อ-นามสกุล</label><input id="rNm" placeholder="เช่น สมชาย ใจดี"></div>
           <div class="r2">
-            <div class="fg"><label>อีเมล</label><input type="email" id="rEm" placeholder="your@email.com"></div>
+            <div class="fg"><label>อีเมล</label><input type="email" id="rEm" placeholder="your@gmail.com"></div>
             <div class="fg"><label>รหัสผ่าน (≥8)</label><input type="password" id="rPw" placeholder="••••••••"></div>
           </div>
           <button class="btn-main" onclick="rsN(1)">ถัดไป →</button>
@@ -2506,8 +2506,8 @@
       chatH.push({ r: 'user', t: q }); chatH.push({ r: 'ai', t: '...' }); renderChat();
       const u = CU; const top = lSc ? Object.entries(lSc).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([t]) => TY[t].n).join(',') : '-';
       const sys = `คุณเป็นผู้ช่วยแพทย์ AI ด้านโรคภูมิแพ้ ชื่อว่า AllergyGuard AI ตอบเป็นภาษาไทยที่เข้าใจง่าย กระชับ เป็นกันเอง
-ข้อมูลผู้ใช้: ${u.name} อายุ ${u.age || '?'} ปี แพ้อาหาร: ${u.fa || 'ไม่มี'} แพ้ยา: ${u.da || 'ไม่มี'} ประเมินล่าสุด: ${top}
-ตอบไม่เกิน 5 ประโยค ถ้าเรื่องฉุกเฉินให้แนะนำพบแพทย์ทันที`;
+      ข้อมูลผู้ใช้: ${u.name} อายุ ${u.age || '?'} ปี แพ้อาหาร: ${u.fa || 'ไม่มี'} แพ้ยา: ${u.da || 'ไม่มี'} ประเมินล่าสุด: ${top}
+      ตอบไม่เกิน 5 ประโยค ถ้าเรื่องฉุกเฉินให้แนะนำพบแพทย์ทันที`;
       try {
         const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 500, messages: [{ role: 'user', content: sys + '\n\nคำถาม: ' + q }] }) });
         const data = await res.json(); chatH[chatH.length - 1] = { r: 'ai', t: data.content?.find(c => c.type === 'text')?.text || 'ขออภัย ไม่สามารถตอบได้' };
@@ -2612,19 +2612,19 @@
       let prompt = '';
       if (mode === 'assess') {
         prompt = `คุณเป็นแพทย์ผู้เชี่ยวชาญโรคภูมิแพ้ในประเทศไทย วิเคราะห์ผู้ป่วย:
-ชื่อ: ${u.name} | อายุ: ${u.age || '?'} ปี | เพศ: ${u.sex || '?'} | อาชีพ: ${jL[u.job] || u.job || '?'}
-สภาพแวดล้อม: ${eL[u.env] || u.env} | สัตว์เลี้ยง: ${u.pet === '1' ? 'มีในบ้าน' : 'ไม่มี'}
-ประวัติครอบครัว: ${fL[u.fam] || '?'} | แพ้อาหาร: ${u.fa || 'ไม่มี'} | แพ้ยา: ${u.da || 'ไม่มี'}
-อาการ: ${sl} | ความรุนแรง: ${v('aSev')}/10 | ระยะเวลา: ${v('aDur')} เดือน
-ประเภทที่วิเคราะห์: ${tt}${v('aNote') ? '\nสิ่งที่สงสัย: ' + v('aNote') : ''}
-${rd ? 'บันทึกอาการล่าสุด: ' + rd : ''}
-เขียนวิเคราะห์ภาษาไทยเข้าใจง่าย 5-7 ประโยค: 1)สรุปความเสี่ยง 2)ประเภทโรคที่น่าสงสัยพร้อมเหตุผล 3)คำแนะนำดูแลตัวเองที่เหมาะกับวิถีชีวิต 4)สัญญาณควรพบแพทย์ ไม่ใช้ bullet/header`;
+        ชื่อ: ${u.name} | อายุ: ${u.age || '?'} ปี | เพศ: ${u.sex || '?'} | อาชีพ: ${jL[u.job] || u.job || '?'}
+        สภาพแวดล้อม: ${eL[u.env] || u.env} | สัตว์เลี้ยง: ${u.pet === '1' ? 'มีในบ้าน' : 'ไม่มี'}
+        ประวัติครอบครัว: ${fL[u.fam] || '?'} | แพ้อาหาร: ${u.fa || 'ไม่มี'} | แพ้ยา: ${u.da || 'ไม่มี'}
+        อาการ: ${sl} | ความรุนแรง: ${v('aSev')}/10 | ระยะเวลา: ${v('aDur')} เดือน
+        ประเภทที่วิเคราะห์: ${tt}${v('aNote') ? '\nสิ่งที่สงสัย: ' + v('aNote') : ''}
+        ${rd ? 'บันทึกอาการล่าสุด: ' + rd : ''}
+        เขียนวิเคราะห์ภาษาไทยเข้าใจง่าย 5-7 ประโยค: 1)สรุปความเสี่ยง 2)ประเภทโรคที่น่าสงสัยพร้อมเหตุผล 3)คำแนะนำดูแลตัวเองที่เหมาะกับวิถีชีวิต 4)สัญญาณควรพบแพทย์ ไม่ใช้ bullet/header`;
       } else {
         prompt = `คุณเป็นแพทย์ผู้เชี่ยวชาญโรคภูมิแพ้ สร้างคำแนะนำส่วนตัวสำหรับ:
-${u.name} | อายุ ${u.age || '?'} | อาชีพ ${jL[u.job] || u.job || '?'} | สภาพแวดล้อม ${eL[u.env] || u.env}
-สัตว์เลี้ยง: ${u.pet === '1' ? 'มีในบ้าน' : 'ไม่มี'} | แพ้อาหาร: ${u.fa || 'ไม่มี'} | โรคประจำตัว: ${u.dis || 'ไม่มี'}
-อาการ: ${sl || 'ยังไม่ประเมิน'} | ประเภทที่น่าสงสัย: ${tt || 'ยังไม่ระบุ'}
-เขียนคำแนะนำส่วนตัวภาษาไทย 5-7 ประโยค: 1)สิ่งกระตุ้นที่ควรหลีกเลี่ยงตามวิถีชีวิต 2)การดูแลตัวเองรายวัน 3)โภชนาการ 4)การออกกำลังกายที่เหมาะสม ไม่ใช้ bullet/header`;
+        ${u.name} | อายุ ${u.age || '?'} | อาชีพ ${jL[u.job] || u.job || '?'} | สภาพแวดล้อม ${eL[u.env] || u.env}
+        สัตว์เลี้ยง: ${u.pet === '1' ? 'มีในบ้าน' : 'ไม่มี'} | แพ้อาหาร: ${u.fa || 'ไม่มี'} | โรคประจำตัว: ${u.dis || 'ไม่มี'}
+        อาการ: ${sl || 'ยังไม่ประเมิน'} | ประเภทที่น่าสงสัย: ${tt || 'ยังไม่ระบุ'}
+        เขียนคำแนะนำส่วนตัวภาษาไทย 5-7 ประโยค: 1)สิ่งกระตุ้นที่ควรหลีกเลี่ยงตามวิถีชีวิต 2)การดูแลตัวเองรายวัน 3)โภชนาการ 4)การออกกำลังกายที่เหมาะสม ไม่ใช้ bullet/header`;
       }
       const tid = mode === 'assess' ? 'aAI' : 'recAI';
       setH(tid, '<div class="typing"><span></span><span></span><span></span></div>');
