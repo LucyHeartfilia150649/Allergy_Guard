@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllergyGuard — หน้าหลัก</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="nav" id="mainNav">
+    <div class="nav-w">
+      <a class="logo" href="dashboard.html">
+        <div class="logo-m">🫁</div>Allergy<span>Guard</span>
+      </a>
+      <div class="nav-tabs">
+        <button class="ntab on" onclick="goto('dash')">🏠 หน้าหลัก</button>
+        <button class="ntab" onclick="goto('assess')">🔍 ประเมิน</button>
+        <button class="ntab" onclick="goto('diary')">📓 บันทึก</button>
+        <button class="ntab" onclick="goto('chat')">💬 ถาม AI</button>
+        <button class="ntab" onclick="goto('plan')">📋 แผน</button>
+        <button class="ntab" onclick="goto('rec')">💡 แนะนำ</button>
+        <button class="ntab" onclick="goto('prev')">🛡️ ป้องกัน</button>
+        <button class="ntab" onclick="goto('prof')">👤 โปรไฟล์</button>
+      </div>
+      <div class="nav-u">
+        <button class="nbell" onclick="openModal('notifModal')" title="การแจ้งเตือน">🔔<span class="ndot"
+            id="ndot"></span></button>
+        <div class="uav" id="navAv">?</div>
+        <span class="uname" id="navNm"></span>
+        <button class="btn-out" onclick="logout()">ออก</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="appWrap">
+    <div id="pgDash" class="pg">
+      <div>
+        <h1 id="greetH" class="pg-ttl"></h1>
+        <p id="greetS" class="pg-sub" style="margin-bottom:.75rem"></p>
+      </div>
+      <div id="dashAl" style="margin-bottom:1rem"></div>
+      <div class="sg" id="statGrd"></div>
+      <div class="g2" style="margin-bottom:1rem">
+        <div class="card">
+          <div class="card-t">
+            <div class="ct-ic" style="background:var(--cl)">⚡</div>ระดับความเสี่ยง
+          </div>
+          <div class="rmtrack">
+            <div class="rmn" id="rmn" style="left:50%"></div>
+          </div>
+          <div class="rlbl"><span>ต่ำ</span><span>ปานกลาง</span><span>สูง</span></div>
+          <div id="rBadge"></div>
+          <p style="font-size:13px;color:var(--ss);margin-top:9px" id="rNote">ทำการประเมินเพื่อดูระดับความเสี่ยง</p>
+        </div>
+        <div class="card">
+          <div class="card-t">
+            <div class="ct-ic" style="background:var(--ol)">📅</div>ประวัติล่าสุด
+          </div>
+          <div id="recentH">
+            <div class="empty-s">
+              <div class="es-ic">📊</div>
+              <p>ยังไม่มีประวัติ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-t">
+            <div class="ct-ic" style="background:var(--tl)">🎯</div>ประเภทโรคที่น่าสงสัย
+          </div>
+          <div id="topAlg">
+            <p style="font-size:13px;color:var(--ss)">กรุณาทำการประเมินก่อน</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-t">
+            <div class="ct-ic" style="background:var(--vl)">📓</div>บันทึกล่าสุด
+          </div>
+          <div id="dashDiary">
+            <div class="empty-s">
+              <div class="es-ic">📓</div>
+              <p>ยังไม่มีบันทึก</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="notifModal" class="modal-bg hidden" onclick="if(event.target===this)closeModal('notifModal')">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal('notifModal')">✕</button>
+      <div class="modal-t">🔔 การแจ้งเตือน</div>
+      <div id="notifList"></div>
+    </div>
+  </div>
+  <script src="js/common.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+
+</html>

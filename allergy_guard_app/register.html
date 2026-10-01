@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllergyGuard — สมัครสมาชิก</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div id="authWrap">
+    <div id="pgReg" class="auth-bg">
+      <div class="auth-card">
+        <div class="auth-hd">
+          <div class="auth-ico">📋</div>
+          <h1 class="auth-ttl">สร้างบัญชีใหม่</h1>
+          <p class="auth-sub">3 ขั้นตอนเพื่อเริ่มดูแลสุขภาพ</p>
+        </div>
+        <div class="reg-bar">
+          <div class="rbd act" id="rd1"></div>
+          <div class="rbd" id="rd2"></div>
+          <div class="rbd" id="rd3"></div>
+        </div>
+        <div id="rs1">
+          <div class="step-cap">ขั้นตอน 1/3 — ข้อมูลบัญชี</div>
+          <div class="fg"><label>ชื่อ-นามสกุล</label><input id="rNm" placeholder="เช่น สมชาย ใจดี"></div>
+          <div class="r2">
+            <div class="fg"><label>อีเมล</label><input type="email" id="rEm" placeholder="your@gmail.com"></div>
+            <div class="fg"><label>รหัสผ่าน (≥8)</label><input type="password" id="rPw" placeholder="••••••••"></div>
+          </div>
+          <button class="btn-main" onclick="rsN(1)">ถัดไป →</button>
+        </div>
+        <div id="rs2" class="hidden">
+          <div class="step-cap">ขั้นตอน 2/3 — ข้อมูลสุขภาพ</div>
+          <div class="r2">
+            <div class="fg"><label>อายุ (ปี)</label><input type="number" id="rAge" placeholder="30" min="1" max="120">
+            </div>
+            <div class="fg"><label>เพศ</label><select id="rSex" title="เพศ">
+                <option value="">—เลือก—</option>
+                <option>ชาย</option>
+                <option>หญิง</option>
+                <option>อื่นๆ</option>
+              </select></div>
+          </div>
+          <div class="r2">
+            <div class="fg"><label>น้ำหนัก (กก.)</label><input type="number" id="rWt" placeholder="65"></div>
+            <div class="fg"><label>ส่วนสูง (ซม.)</label><input type="number" id="rHt" placeholder="170"></div>
+          </div>
+          <div class="r2">
+            <div class="fg"><label>กรุ๊ปเลือด</label><select id="rBld" title="กรุ๊ปเลือด">
+                <option value="">ไม่ทราบ</option>
+                <option>A</option>
+                <option>B</option>
+                <option>O</option>
+                <option>AB</option>
+              </select></div>
+            <div class="fg"><label>ครอบครัวแพ้</label><select id="rFam" title="ประวัติครอบครัวแพ้">
+                <option value="0">ไม่มี</option>
+                <option value="1">พ่อหรือแม่</option>
+                <option value="2">ทั้งคู่</option>
+                <option value="0.5">ไม่แน่ใจ</option>
+              </select></div>
+          </div>
+          <div class="brow"><button class="btn-ghost" onclick="rsB(2)">← ย้อน</button><button class="btn-t full"
+              onclick="rsN(2)">ถัดไป →</button></div>
+        </div>
+        <div id="rs3" class="hidden">
+          <div class="step-cap">ขั้นตอน 3/3 — วิถีชีวิต & ประวัติแพ้</div>
+          <div class="r2">
+            <div class="fg"><label>สภาพแวดล้อม</label><select id="rEnv" title="สภาพแวดล้อมที่อยู่อาศัย">
+                <option value="urban">เมือง/มลภาวะสูง</option>
+                <option value="suburban">ชานเมือง</option>
+                <option value="rural">ชนบท</option>
+              </select></div>
+            <div class="fg"><label>อาชีพ</label><select id="rJob" title="อาชีพ">
+                <option value="">—เลือก—</option>
+                <option value="office">พนักงานออฟฟิศ</option>
+                <option value="outdoor">งานนอกสถานที่</option>
+                <option value="medical">บุคลากรการแพทย์</option>
+                <option value="student">นักเรียน/นักศึกษา</option>
+                <option value="farmer">เกษตรกร</option>
+                <option value="other">อื่นๆ</option>
+              </select></div>
+          </div>
+          <div class="fg"><label>สัตว์เลี้ยง</label><select id="rPet" title="สัตว์เลี้ยงในบ้าน">
+              <option value="0">ไม่มี</option>
+              <option value="1">มี (สุนัข/แมวในบ้าน)</option>
+              <option value="0.5">มี (อยู่นอกบ้าน)</option>
+            </select></div>
+          <div class="fg"><label>ประวัติแพ้อาหาร</label><input id="rFA"
+              placeholder="เช่น นม, ถั่ว, อาหารทะเล (เว้นว่างถ้าไม่มี)"></div>
+          <div class="fg"><label>ประวัติแพ้ยา</label><input id="rDA"
+              placeholder="เช่น เพนนิซิลิน, แอสไพริน (เว้นว่างถ้าไม่มี)"></div>
+          <div class="fg"><label>โรคประจำตัวอื่นๆ</label><input id="rDis"
+              placeholder="เช่น เบาหวาน, ความดัน (เว้นว่างถ้าไม่มี)"></div>
+          <div class="brow"><button class="btn-ghost" onclick="rsB(3)">← ย้อน</button><button class="btn-t full"
+              onclick="doReg()">✅ สร้างบัญชี</button></div>
+        </div>
+        <div class="sw-l" style="margin-top:1rem">มีบัญชีแล้ว? <a onclick="showAuth('login')">เข้าสู่ระบบ</a></div>
+      </div>
+    </div>
+  </div>
+  <script src="js/common.js"></script>
+  <script src="js/register.js"></script>
+</body>
+
+</html>

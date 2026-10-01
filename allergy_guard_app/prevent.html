@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllergyGuard — การป้องกัน</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="nav" id="mainNav">
+    <div class="nav-w">
+      <a class="logo" href="dashboard.html">
+        <div class="logo-m">🫁</div>Allergy<span>Guard</span>
+      </a>
+      <div class="nav-tabs">
+        <button class="ntab on" onclick="goto('dash')">🏠 หน้าหลัก</button>
+        <button class="ntab" onclick="goto('assess')">🔍 ประเมิน</button>
+        <button class="ntab" onclick="goto('diary')">📓 บันทึก</button>
+        <button class="ntab" onclick="goto('chat')">💬 ถาม AI</button>
+        <button class="ntab" onclick="goto('plan')">📋 แผน</button>
+        <button class="ntab" onclick="goto('rec')">💡 แนะนำ</button>
+        <button class="ntab" onclick="goto('prev')">🛡️ ป้องกัน</button>
+        <button class="ntab" onclick="goto('prof')">👤 โปรไฟล์</button>
+      </div>
+      <div class="nav-u">
+        <button class="nbell" onclick="openModal('notifModal')" title="การแจ้งเตือน">🔔<span class="ndot"
+            id="ndot"></span></button>
+        <div class="uav" id="navAv">?</div>
+        <span class="uname" id="navNm"></span>
+        <button class="btn-out" onclick="logout()">ออก</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="appWrap">
+    <div id="pgPrev" class="pg">
+      <h1 class="pg-ttl">🛡️ แนวทางป้องกันโรคภูมิแพ้</h1>
+      <p class="pg-sub">ลดความเสี่ยงและควบคุมอาการด้วยวิถีชีวิตที่เหมาะสม</p>
+      <div class="g2" style="margin-bottom:1rem">
+        <div>
+          <div class="card">
+            <div class="card-t">
+              <div class="ct-ic" style="background:var(--tl)">🏠</div>สภาพแวดล้อมในบ้าน
+            </div>
+            <div class="tip tip-g">
+              <div class="tip-ic">✅</div>
+              <div>
+                <div class="tip-ti">ทำความสะอาดสม่ำเสมอ</div>
+                <div class="tip-ds">ดูดฝุ่นพรม โซฟา ผ้าม่านทุกสัปดาห์ ใช้เครื่องกรองอากาศ HEPA ลดไรฝุ่นและสปอร์เชื้อรา
+                </div>
+              </div>
+            </div>
+            <div class="tip tip-g">
+              <div class="tip-ic">💧</div>
+              <div>
+                <div class="tip-ti">ควบคุมความชื้น 40–50%</div>
+                <div class="tip-ds">ใช้เครื่องลดความชื้น ยับยั้งการเจริญของเชื้อราและไรฝุ่น ซึ่งเป็นสารก่อภูมิแพ้หลัก
+                </div>
+              </div>
+            </div>
+            <div class="tip tip-a">
+              <div class="tip-ic">🛏️</div>
+              <div>
+                <div class="tip-ti">ซักผ้าปูที่นอนทุก 1–2 สัปดาห์</div>
+                <div class="tip-ds">ใช้น้ำร้อน ≥60°C ฆ่าไรฝุ่น พิจารณาปลอกหมอนกันไรฝุ่นชนิดพิเศษ</div>
+              </div>
+            </div>
+            <div class="tip tip-g">
+              <div class="tip-ic">🌡️</div>
+              <div>
+                <div class="tip-ti">รักษาอุณหภูมิห้อง 18–22°C</div>
+                <div class="tip-ds">ช่วยลดการระคายเคืองทางเดินหายใจ เหมาะสำหรับผู้เป็นโรคหืด</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-t">
+              <div class="ct-ic" style="background:var(--ol)">🌿</div>หลีกเลี่ยงสารก่อภูมิแพ้
+            </div>
+            <div class="tip tip-g">
+              <div class="tip-ic">🌸</div>
+              <div>
+                <div class="tip-ti">ช่วงเกสรดอกไม้</div>
+                <div class="tip-ds">สวม N95 อาบน้ำทันทีหลังกลับบ้าน ปิดหน้าต่าง ดูค่าดัชนีเกสรก่อนออกนอกบ้าน</div>
+              </div>
+            </div>
+            <div class="tip tip-a">
+              <div class="tip-ic">🐱</div>
+              <div>
+                <div class="tip-ti">ผู้แพ้สัตว์เลี้ยง</div>
+                <div class="tip-ds">ห้ามนำสัตว์เข้าห้องนอน อาบน้ำสัตว์ 2 ครั้ง/สัปดาห์ ล้างมือทุกครั้งหลังสัมผัส</div>
+              </div>
+            </div>
+            <div class="tip tip-r">
+              <div class="tip-ic">🍤</div>
+              <div>
+                <div class="tip-ti">ผู้แพ้อาหาร — สำคัญมาก</div>
+                <div class="tip-ds">อ่านฉลากทุกครั้ง แจ้งร้านอาหารล่วงหน้า พก EpiPen หากเสี่ยงช็อก</div>
+              </div>
+            </div>
+            <div class="tip tip-a">
+              <div class="tip-ic">💊</div>
+              <div>
+                <div class="tip-ti">ผู้แพ้ยา</div>
+                <div class="tip-ds">พกบัตรแจ้งประวัติแพ้ยาตลอดเวลา แจ้งแพทย์และเภสัชกรทุกครั้งก่อนรับยา</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="card-t">
+              <div class="ct-ic" style="background:var(--tl)">💊</div>ดูแลสุขภาพเชิงรุก
+            </div>
+            <div class="tip tip-g">
+              <div class="tip-ic">💉</div>
+              <div>
+                <div class="tip-ti">ภูมิคุ้มกันบำบัด (Immunotherapy)</div>
+                <div class="tip-ds">ให้สารก่อภูมิแพ้ปริมาณน้อยสะสม ลดความไวถาวรในระยะยาว 3–5 ปี ปรึกษาแพทย์</div>
+              </div>
+            </div>
+            <div class="tip tip-g">
+              <div class="tip-ic">🏊</div>
+              <div>
+                <div class="tip-ti">ออกกำลังกายอย่างเหมาะสม</div>
+                <div class="tip-ds">ว่ายน้ำเหมาะสำหรับผู้เป็นหืด หลีกเลี่ยงออกกำลังกายนอกบ้านเมื่อ AQI > 100</div>
+              </div>
+            </div>
+            <div class="tip tip-a">
+              <div class="tip-ic">😴</div>
+              <div>
+                <div class="tip-ti">นอนหลับ 7–8 ชั่วโมง</div>
+                <div class="tip-ds">อดนอนและความเครียดทำให้ภูมิต้านทานอ่อนแอ กระตุ้นอาการรุนแรงขึ้น</div>
+              </div>
+            </div>
+            <div class="tip tip-g">
+              <div class="tip-ic">🧘</div>
+              <div>
+                <div class="tip-ti">ลดความเครียด</div>
+                <div class="tip-ds">ฝึกหายใจลึก สมาธิ โยคะ ความเครียดเรื้อรังกระตุ้นการอักเสบและทำให้อาการแย่</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-t">
+              <div class="ct-ic" style="background:var(--cl)">🚨</div>สัญญาณฉุกเฉิน — พบแพทย์ทันที
+            </div>
+            <div class="tip tip-r">
+              <div class="tip-ic">🚑</div>
+              <div>
+                <div class="tip-ti">ช็อกจากภูมิแพ้ (Anaphylaxis)</div>
+                <div class="tip-ds">หายใจลำบากรุนแรง ปากบวม ความดันตก หัวใจเต้นเร็ว หมดสติ — โทร <b>1669</b> ทันที</div>
+              </div>
+            </div>
+            <div class="tip tip-r">
+              <div class="tip-ic">⛔</div>
+              <div>
+                <div class="tip-ti">อาการรุนแรงขึ้นแม้ใช้ยา</div>
+                <div class="tip-ds">ไอเรื้อรัง >3 สัปดาห์ หายใจหวีดทุกคืน ผื่นลาม — พบแพทย์ภายใน 24–48 ชม.</div>
+              </div>
+            </div>
+            <div class="tip tip-r">
+              <div class="tip-ic">👀</div>
+              <div>
+                <div class="tip-ti">อาการที่ไม่เคยมีมาก่อน</div>
+                <div class="tip-ds">หน้าบวม ลำคอบวม หายใจมีเสียงดัง อาเจียนรุนแรง — ฉุกเฉินทางการแพทย์</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-t">
+          <div class="ct-ic" style="background:var(--vl)">📋</div>ตารางป้องกันรายสัปดาห์
+        </div>
+        <div style="overflow-x:auto">
+          <table class="htab">
+            <thead>
+              <tr>
+                <th>ความถี่</th>
+                <th>กิจกรรม</th>
+                <th>ผลลัพธ์</th>
+                <th>✓</th>
+              </tr>
+            </thead>
+            <tbody id="prevTbl"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="notifModal" class="modal-bg hidden" onclick="if(event.target===this)closeModal('notifModal')">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal('notifModal')">✕</button>
+      <div class="modal-t">🔔 การแจ้งเตือน</div>
+      <div id="notifList"></div>
+    </div>
+  </div>
+  <script src="js/common.js"></script>
+  <script src="js/prevent.js"></script>
+</body>
+
+</html>

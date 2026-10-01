@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllergyGuard — โปรไฟล์</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="nav" id="mainNav">
+    <div class="nav-w">
+      <a class="logo" href="dashboard.html">
+        <div class="logo-m">🫁</div>Allergy<span>Guard</span>
+      </a>
+      <div class="nav-tabs">
+        <button class="ntab on" onclick="goto('dash')">🏠 หน้าหลัก</button>
+        <button class="ntab" onclick="goto('assess')">🔍 ประเมิน</button>
+        <button class="ntab" onclick="goto('diary')">📓 บันทึก</button>
+        <button class="ntab" onclick="goto('chat')">💬 ถาม AI</button>
+        <button class="ntab" onclick="goto('plan')">📋 แผน</button>
+        <button class="ntab" onclick="goto('rec')">💡 แนะนำ</button>
+        <button class="ntab" onclick="goto('prev')">🛡️ ป้องกัน</button>
+        <button class="ntab" onclick="goto('prof')">👤 โปรไฟล์</button>
+      </div>
+      <div class="nav-u">
+        <button class="nbell" onclick="openModal('notifModal')" title="การแจ้งเตือน">🔔<span class="ndot"
+            id="ndot"></span></button>
+        <div class="uav" id="navAv">?</div>
+        <span class="uname" id="navNm"></span>
+        <button class="btn-out" onclick="logout()">ออก</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="appWrap">
+    <div id="pgProf" class="pg">
+      <h1 class="pg-ttl" style="margin-bottom:1.25rem">👤 โปรไฟล์ของฉัน</h1>
+      <div class="prof-top">
+        <div class="prof-av" id="pAv">?</div>
+        <div style="flex:1">
+          <div class="prof-nm" id="pNm">—</div>
+          <div class="prof-em" id="pEm">—</div>
+          <div id="pMt" style="font-size:13px;color:var(--ss);margin-top:5px">—</div>
+          <div style="margin-top:.75rem;display:flex;gap:8px;flex-wrap:wrap" id="pTags"></div>
+        </div>
+        <button class="btn-sm" onclick="openModal('editModal')">✏️ แก้ไข</button>
+      </div>
+      <div class="prof-grid">
+        <div class="card">
+          <div class="card-t">
+            <div class="ct-ic" style="background:var(--ol)">🏥</div>ข้อมูลสุขภาพ
+          </div>
+          <div id="pH"></div>
+        </div>
+        <div class="card">
+          <div class="card-t">
+            <div class="ct-ic" style="background:var(--al)">🏡</div>วิถีชีวิต
+          </div>
+          <div id="pL"></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:0">
+        <div class="card-t">
+          <div class="ct-ic" style="background:var(--tl)">🤖</div>สรุปสุขภาพจาก AI
+        </div>
+        <div class="ai-txt" id="profAI">
+          <p style="font-size:13px;color:var(--ss)">คลิกปุ่มด้านล่างเพื่อให้ AI วิเคราะห์โปรไฟล์สุขภาพของคุณ</p>
+        </div>
+        <button class="btn-sm" style="margin-top:.75rem" onclick="genHealthSum()">🔄 สร้างสรุปด้วย AI</button>
+      </div>
+      <div class="card" style="margin-top:0">
+        <div class="card-t">
+          <div class="ct-ic" style="background:var(--tl)">📊</div>ประวัติการประเมินทั้งหมด
+        </div>
+        <div style="overflow-x:auto">
+          <table class="htab">
+            <thead>
+              <tr>
+                <th>วันที่</th>
+                <th>อาการ</th>
+                <th>ความเสี่ยง</th>
+                <th>ประเภทที่น่าสงสัย</th>
+                <th>ความรุนแรง</th>
+              </tr>
+            </thead>
+            <tbody id="histB"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" style="margin-top:0">
+        <div class="card-t">
+          <div class="ct-ic" style="background:var(--cl)">⚙️</div>จัดการข้อมูล
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn-sm" onclick="exportData()">📥 ส่งออก JSON</button>
+          <button class="btn-danger"
+            onclick="if(confirm('ล้างประวัติทั้งหมด?')){hist=[];lSc=null;lSym=[];saveLS();buildProf();buildDash()}">🗑️
+            ล้างประวัติ</button>
+          <button class="btn-danger"
+            onclick="if(confirm('ล้างบันทึกทั้งหมด?')){diary=[];saveLS();buildDiaryList();buildDash()}">🗑️
+            ล้างบันทึก</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="notifModal" class="modal-bg hidden" onclick="if(event.target===this)closeModal('notifModal')">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal('notifModal')">✕</button>
+      <div class="modal-t">🔔 การแจ้งเตือน</div>
+      <div id="notifList"></div>
+    </div>
+  </div>
+  <div id="editModal" class="modal-bg hidden" onclick="if(event.target===this)closeModal('editModal')">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal('editModal')">✕</button>
+      <div class="modal-t">✏️ แก้ไขข้อมูลส่วนตัว</div>
+      <div class="r2">
+        <div class="fg"><label>ชื่อ-นามสกุล</label><input id="eName" title="ชื่อ-นามสกุล" placeholder="เช่น สมชาย ใจดี">
+        </div>
+        <div class="fg"><label>อายุ (ปี)</label><input type="number" id="eAge" title="อายุ (ปี)" placeholder="30"></div>
+      </div>
+      <div class="r2">
+        <div class="fg"><label>น้ำหนัก (กก.)</label><input type="number" id="eWt" title="น้ำหนัก (กก.)"
+            placeholder="65"></div>
+        <div class="fg"><label>ส่วนสูง (ซม.)</label><input type="number" id="eHt" title="ส่วนสูง (ซม.)"
+            placeholder="170"></div>
+      </div>
+      <div class="r2">
+        <div class="fg"><label>สภาพแวดล้อม</label><select id="eEnv" title="สภาพแวดล้อมที่อยู่อาศัย">
+            <option value="urban">เมือง/มลภาวะสูง</option>
+            <option value="suburban">ชานเมือง</option>
+            <option value="rural">ชนบท</option>
+          </select></div>
+        <div class="fg"><label>สัตว์เลี้ยง</label><select id="ePet" title="สัตว์เลี้ยงในบ้าน">
+            <option value="0">ไม่มี</option>
+            <option value="1">มี (ในบ้าน)</option>
+            <option value="0.5">มี (นอกบ้าน)</option>
+          </select></div>
+      </div>
+      <div class="fg"><label>ประวัติแพ้อาหาร</label><input id="eFA" title="ประวัติแพ้อาหาร"
+          placeholder="เช่น นม, ถั่ว (เว้นว่างถ้าไม่มี)"></div>
+      <div class="fg"><label>ประวัติแพ้ยา</label><input id="eDA" title="ประวัติแพ้ยา"
+          placeholder="เช่น เพนนิซิลิน (เว้นว่างถ้าไม่มี)"></div>
+      <div class="fg"><label>โรคประจำตัว</label><input id="eDis" title="โรคประจำตัวอื่นๆ"
+          placeholder="เช่น เบาหวาน, ความดัน (เว้นว่างถ้าไม่มี)"></div>
+      <div class="brow"><button class="btn-ghost" onclick="closeModal('editModal')">ยกเลิก</button><button
+          class="btn-t full" onclick="saveProfile()">💾 บันทึก</button></div>
+    </div>
+  </div>
+  <script src="js/common.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllergyGuard — ประเมินอาการ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="nav" id="mainNav">
+    <div class="nav-w">
+      <a class="logo" href="dashboard.html">
+        <div class="logo-m">🫁</div>Allergy<span>Guard</span>
+      </a>
+      <div class="nav-tabs">
+        <button class="ntab on" onclick="goto('dash')">🏠 หน้าหลัก</button>
+        <button class="ntab" onclick="goto('assess')">🔍 ประเมิน</button>
+        <button class="ntab" onclick="goto('diary')">📓 บันทึก</button>
+        <button class="ntab" onclick="goto('chat')">💬 ถาม AI</button>
+        <button class="ntab" onclick="goto('plan')">📋 แผน</button>
+        <button class="ntab" onclick="goto('rec')">💡 แนะนำ</button>
+        <button class="ntab" onclick="goto('prev')">🛡️ ป้องกัน</button>
+        <button class="ntab" onclick="goto('prof')">👤 โปรไฟล์</button>
+      </div>
+      <div class="nav-u">
+        <button class="nbell" onclick="openModal('notifModal')" title="การแจ้งเตือน">🔔<span class="ndot"
+            id="ndot"></span></button>
+        <div class="uav" id="navAv">?</div>
+        <span class="uname" id="navNm"></span>
+        <button class="btn-out" onclick="logout()">ออก</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="appWrap">
+    <div id="pgAssess" class="pg">
+      <h1 class="pg-ttl">🔍 ประเมินอาการโรคภูมิแพ้</h1>
+      <p class="pg-sub">เลือกอาการที่คุณกำลังประสบ ยิ่งเลือกครบ ผลยิ่งแม่นยำ</p>
+      <div class="asteps">
+        <div class="as on" id="aS1">① เลือกอาการ</div>
+        <div class="as" id="aS2">② ปัจจัยเสริม</div>
+        <div class="as" id="aS3">③ ผลวิเคราะห์</div>
+      </div>
+      <div id="ap1">
+        <div class="card">
+          <div class="card-t">
+            <div class="ct-ic" style="background:#FFF3E0">👃</div>จมูกและตา
+          </div>
+          <div class="sgrid" id="sg1"></div>
+        </div>
+        <div class="card">
+          <div class="card-t">
+            <div class="ct-ic" style="background:#FCE4EC">🖐️</div>ผิวหนัง
+          </div>
+          <div class="sgrid" id="sg2"></div>
+        </div>
+        <div class="card">
+          <div class="card-t">
+            <div class="ct-ic" style="background:#E3F2FD">🫁</div>ระบบหายใจ
+          </div>
+          <div class="sgrid" id="sg3"></div>
+        </div>
+        <div class="card">
+          <div class="card-t">
+            <div class="ct-ic" style="background:#E8F5E9">🍽️</div>ระบบย่อยอาหาร
+          </div>
+          <div class="sgrid" id="sg4"></div>
+        </div>
+        <div class="al al-info">💡 เลือกได้หลายอาการ — กดเลือก กดอีกครั้งเพื่อยกเลิก</div>
+        <div class="brow"><button class="btn-t full" onclick="aN(1)">ถัดไป →</button></div>
+      </div>
+      <div id="ap2" class="hidden">
+        <div class="card">
+          <div class="card-t">
+            <div class="ct-ic" style="background:var(--tl)">⚙️</div>ปัจจัยเสริม
+          </div>
+          <div class="fg"><label>สภาพแวดล้อม</label><select id="aEnv" title="สภาพแวดล้อมที่อยู่อาศัย">
+              <option value="urban">เมือง/มลภาวะสูง</option>
+              <option value="suburban">ชานเมือง</option>
+              <option value="rural">ชนบท</option>
+            </select></div>
+          <div class="fg"><label>ฤดูที่อาการรุนแรงขึ้น</label><select id="aSeas" title="ฤดูที่อาการรุนแรงขึ้น">
+              <option value="any">ตลอดทั้งปี</option>
+              <option value="spring">ดอกไม้บาน</option>
+              <option value="rainy">ฤดูฝน</option>
+              <option value="dry">ฤดูแล้ง</option>
+              <option value="night">กลางคืน/เช้าตรู่</option>
+            </select></div>
+          <div class="slr"><span class="slr-l">ความรุนแรง</span><input type="range" id="aSev" min="1" max="10" value="5"
+              title="ระดับความรุนแรงของอาการ 1-10" oninput="$('sO').textContent=this.value+'/10'"><span class="slr-v"
+              id="sO">5/10</span></div>
+          <div class="slr"><span class="slr-l">ระยะเวลา</span><input type="range" id="aDur" min="1" max="24" value="3"
+              title="ระยะเวลาที่มีอาการ (เดือน)" oninput="$('dO').textContent=this.value+' เดือน'"><span class="slr-v"
+              id="dO">3 เดือน</span></div>
+          <div class="fg" style="margin-top:.5rem"><label>สิ่งที่สงสัยว่าเป็นตัวกระตุ้น</label><textarea id="aNote"
+              placeholder="เช่น หลังกินอาหารทะเล, สัมผัสแมว, ออกกำลังกายกลางแจ้ง, ฝุ่น..."></textarea></div>
+        </div>
+        <div class="brow"><button class="btn-ghost" onclick="aB(2)">← ย้อนกลับ</button><button class="btn-t full"
+            onclick="doAssess()">✨ วิเคราะห์ด้วย AI</button></div>
+      </div>
+      <div id="ap3" class="hidden">
+        <div id="aLoad" class="load-c">
+          <div class="spn"></div>
+          <div style="font-size:17px;font-weight:800;color:var(--ink);margin-bottom:5px">กำลังวิเคราะห์...</div>
+          <div style="font-size:13.5px;color:var(--ss)" id="aLm">ประมวลผลข้อมูล</div>
+        </div>
+        <div id="aRes" class="hidden">
+          <div id="aRBan"></div>
+          <div class="sg" id="aInfo" style="margin-bottom:1rem"></div>
+          <div class="card">
+            <div class="card-t">
+              <div class="ct-ic" style="background:var(--al)">📊</div>ความน่าจะเป็นแต่ละประเภทโรค
+            </div>
+            <div id="aPbars"></div>
+          </div>
+          <div class="card">
+            <div class="ai-hd">✨ การวิเคราะห์จาก Claude AI <span class="ai-pill">claude-sonnet-4-6</span></div>
+            <div class="ai-txt" id="aAI">
+              <div class="typing"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+          <div class="disc">⚠️ ผลนี้เป็นการประเมินเบื้องต้น ไม่ใช่การวินิจฉัยทางการแพทย์
+            กรุณาพบแพทย์ผู้เชี่ยวชาญเพื่อการตรวจที่ถูกต้อง</div>
+          <div class="brow" style="margin-top:1.5rem">
+            <button class="btn-ghost" onclick="resetA()">← ประเมินใหม่</button>
+            <button class="btn-t" onclick="goto('rec')">💡 คำแนะนำ →</button>
+            <button class="btn-t" onclick="goto('plan')">📋 แผนการดูแล →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="notifModal" class="modal-bg hidden" onclick="if(event.target===this)closeModal('notifModal')">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal('notifModal')">✕</button>
+      <div class="modal-t">🔔 การแจ้งเตือน</div>
+      <div id="notifList"></div>
+    </div>
+  </div>
+  <script src="js/common.js"></script>
+  <script src="js/assess.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllergyGuard — บันทึกอาการ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="nav" id="mainNav">
+    <div class="nav-w">
+      <a class="logo" href="dashboard.html">
+        <div class="logo-m">🫁</div>Allergy<span>Guard</span>
+      </a>
+      <div class="nav-tabs">
+        <button class="ntab on" onclick="goto('dash')">🏠 หน้าหลัก</button>
+        <button class="ntab" onclick="goto('assess')">🔍 ประเมิน</button>
+        <button class="ntab" onclick="goto('diary')">📓 บันทึก</button>
+        <button class="ntab" onclick="goto('chat')">💬 ถาม AI</button>
+        <button class="ntab" onclick="goto('plan')">📋 แผน</button>
+        <button class="ntab" onclick="goto('rec')">💡 แนะนำ</button>
+        <button class="ntab" onclick="goto('prev')">🛡️ ป้องกัน</button>
+        <button class="ntab" onclick="goto('prof')">👤 โปรไฟล์</button>
+      </div>
+      <div class="nav-u">
+        <button class="nbell" onclick="openModal('notifModal')" title="การแจ้งเตือน">🔔<span class="ndot"
+            id="ndot"></span></button>
+        <div class="uav" id="navAv">?</div>
+        <span class="uname" id="navNm"></span>
+        <button class="btn-out" onclick="logout()">ออก</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="appWrap">
+    <div id="pgDiary" class="pg">
+      <h1 class="pg-ttl">📓 บันทึกอาการรายวัน</h1>
+      <p class="pg-sub">บันทึกอาการ ระดับความรุนแรง สิ่งกระตุ้น และยาที่ใช้ในแต่ละวัน</p>
+      <div class="card">
+        <div class="card-t">
+          <div class="ct-ic" style="background:var(--vl)">✏️</div>เพิ่มบันทึกวันนี้
+        </div>
+        <div class="r2">
+          <div class="fg"><label>วันที่</label><input type="date" id="dDate" title="วันที่บันทึก"></div>
+          <div class="fg"><label>ระดับอาการโดยรวม</label>
+            <select id="dLevel" title="ระดับความรุนแรงของอาการโดยรวม">
+              <option value="1">1 — ไม่มีอาการ ✅</option>
+              <option value="2">2 — เล็กน้อย 🟡</option>
+              <option value="3" selected>3 — ปานกลาง 🟠</option>
+              <option value="4">4 — รุนแรง 🔴</option>
+              <option value="5">5 — รุนแรงมาก 🚨</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg"><label>อาการที่มีวันนี้ (เลือกได้หลาย)</label>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px" id="dSymPick"></div>
+        </div>
+        <div class="r2">
+          <div class="fg"><label>สิ่งกระตุ้นที่สงสัย</label><input id="dTrig"
+              placeholder="เช่น ฝุ่น, ควัน, อาหาร, สัตว์..."></div>
+          <div class="fg"><label>ยาที่ใช้วันนี้</label><input id="dMed" placeholder="เช่น Cetirizine 10mg..."></div>
+        </div>
+        <div class="fg"><label>บันทึกเพิ่มเติม</label><textarea id="dNote"
+            placeholder="อาการ สภาพอากาศ กิจกรรม หรืออื่นๆ..."></textarea></div>
+        <div class="brow" style="margin-top:1rem"><button class="btn-t" onclick="saveDiary()">💾 บันทึก</button><button
+            class="btn-ghost" onclick="clearDForm()">ล้าง</button></div>
+        <div id="dSaved" class="hidden"
+          style="margin-top:.75rem;padding:9px 14px;background:var(--tl);border-radius:var(--r8);font-size:13px;color:var(--td);font-weight:600">
+          ✅ บันทึกสำเร็จ!</div>
+      </div>
+      <div class="card">
+        <div class="card-t">
+          <div class="ct-ic" style="background:var(--ol)">📚</div>ประวัติการบันทึกทั้งหมด
+        </div>
+        <div id="diaryList"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="notifModal" class="modal-bg hidden" onclick="if(event.target===this)closeModal('notifModal')">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal('notifModal')">✕</button>
+      <div class="modal-t">🔔 การแจ้งเตือน</div>
+      <div id="notifList"></div>
+    </div>
+  </div>
+  <script src="js/common.js"></script>
+  <script src="js/diary.js"></script>
+</body>
+
+</html>
