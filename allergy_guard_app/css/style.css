@@ -1702,3 +1702,7 @@ button {
     opacity: 1
   }
 }
+
+/* reCAPTCHA */
+.rc-wrap { display: flex; justify-content: center; margin-bottom: 12px; min-height: 78px; }
+@media (max-width: 400px) { .rc-box { transform: scale(.85); transform-origin: center top; } .rc-wrap { min-height: 66px; } }

@@ -96,6 +96,8 @@
               placeholder="เช่น เพนนิซิลิน, แอสไพริน (เว้นว่างถ้าไม่มี)"></div>
           <div class="fg"><label>โรคประจำตัวอื่นๆ</label><input id="rDis"
               placeholder="เช่น เบาหวาน, ความดัน (เว้นว่างถ้าไม่มี)"></div>
+          <div class="rc-wrap"><div id="rCap" class="rc-box"></div></div>
+          <div id="rCapErr" class="err-box hidden">กรุณาติ๊ก "ฉันไม่ใช่โรบอต" ก่อนดำเนินการต่อ</div>
           <div class="brow"><button class="btn-ghost" onclick="rsB(3)">← ย้อน</button><button class="btn-t full"
               onclick="doReg()">✅ สร้างบัญชี</button></div>
         </div>
@@ -103,6 +105,9 @@
       </div>
     </div>
   </div>
+  <script src="js/config.js"></script>
+  <script src="js/recaptcha.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
   <script src="js/common.js"></script>
   <script src="js/register.js"></script>
 </body>

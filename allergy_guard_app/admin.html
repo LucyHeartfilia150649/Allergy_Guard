@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>AllergyGuard — ผู้ดูแลระบบ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <div id="adminLogin" class="auth-bg">
+    <div class="auth-card" style="max-width:420px">
+      <div class="auth-hd">
+        <div class="auth-ico">🛠️</div>
+        <h1 class="auth-ttl">ผู้ดูแลระบบ</h1>
+        <p class="auth-sub">เข้าสู่ระบบเพื่อดูข้อมูลผู้ใช้และสถิติ</p>
+      </div>
+      <div class="fg"><label>อีเมลผู้ดูแล</label><input type="email" id="aEm" placeholder="admin@allergy.com"></div>
+      <div class="fg"><label>รหัสผ่าน</label><input type="password" id="aPw" placeholder="••••••••"
+          onkeydown="if(event.key==='Enter')adminLogin()"></div>
+      <div id="aErr" class="err-box hidden">อีเมลหรือรหัสผ่านไม่ถูกต้อง</div>
+      <button class="btn-main" onclick="adminLogin()">เข้าสู่ระบบ</button>
+      <div class="demo-box">🔑 ทดลอง: <b>admin@allergy.com</b> / <b>admin1234</b></div>
+    </div>
+  </div>
+
+  <div id="adminApp" class="hidden">
+    <nav class="nav admin">
+      <div class="nav-w">
+        <a class="logo" href="admin.html">
+          <div class="logo-m">🫁</div>Allergy<span>Guard</span>
+        </a>
+        <span class="tag tg-v admin-tag">ผู้ดูแลระบบ</span>
+        <div class="nav-u" style="margin-left:auto"><button class="btn-out" onclick="adminLogout()">ออก</button></div>
+      </div>
+    </nav>
+
+    <main class="pg">
+      <h1 class="pg-ttl">ภาพรวมระบบ</h1>
+      <div class="al al-info" style="margin-bottom:1rem">ข้อมูลทั้งหมดมาจาก localStorage ของเบราว์เซอร์เครื่องนี้ จึงเห็นเฉพาะบัญชีที่สมัครในเครื่องนี้เท่านั้น</div>
+      <div class="sg" id="stats"></div>
+      <div class="g2">
+        <div class="card"><div class="card-t">📊 การประเมินตามระดับความเสี่ยง</div><div id="riskBars"></div></div>
+        <div class="card"><div class="card-t">🔬 ประเภทภูมิแพ้ที่พบบ่อย</div><div id="typeBars"></div></div>
+      </div>
+      <div class="card">
+        <div class="card-t">👥 ผู้ใช้งาน</div>
+        <div class="tools">
+          <input id="q" type="search" placeholder="ค้นหาชื่อหรืออีเมล" oninput="renderTable()">
+          <button class="btn-ghost" onclick="refresh()">รีเฟรชข้อมูล</button>
+          <button class="btn-ghost" onclick="exportCSV()">ส่งออก CSV</button>
+          <button class="btn-t" onclick="exportJSON()">ส่งออก JSON</button>
+        </div>
+        <div class="tbl-wrap">
+          <table class="at">
+            <thead><tr><th>ผู้ใช้</th><th>อายุ / เพศ</th><th>ประวัติแพ้</th><th>ประเมิน</th><th>บันทึก</th><th>ความเสี่ยงล่าสุด</th><th></th></tr></thead>
+            <tbody id="rowsBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <div id="detailModal" class="modal-bg hidden" onclick="if(event.target===this)closeModal('detailModal')">
+      <div class="modal wide">
+        <button class="modal-x" onclick="closeModal('detailModal')">✕</button>
+        <div id="detail"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

@@ -3,3 +3,6 @@ services:
     build: .
     ports:
       - "8080:80"
+    environment:
+      # อ่านค่าจากไฟล์ .env (ถ้าไม่มี จะใช้คีย์ทดสอบใน js/config.js)
+      RECAPTCHA_SITE_KEY: ${RECAPTCHA_SITE_KEY:-}

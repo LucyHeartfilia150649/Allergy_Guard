@@ -47,7 +47,6 @@ function loadU() { const u = localStorage.getItem('ag_users'); if (u) { const p 
 
 function showAuth(p) { location.href = p === 'reg' ? 'register.html' : 'login.html'; }
 
-function doLogin() { loadU(); const e = v('lEm'), p = v('lPw'); const u = users.find(x => x.email === e && x.pass === p); if (!u) { show('lErr'); return; } hide('lErr'); enterApp(u); }
 
 function enterApp(u) { sessionStorage.setItem('ag_session', u.email); location.href = 'dashboard.html'; }
 
