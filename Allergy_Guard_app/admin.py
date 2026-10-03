@@ -42,8 +42,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-change-me")
 
 app = Flask(
     __name__,
-    template_folder=BASE_DIR,
-    static_folder=BASE_DIR,
+    template_folder=os.path.join(BASE_DIR, "templates"),
+    static_folder=os.path.join(BASE_DIR, "templates"),
     static_url_path="",
 )
 app.secret_key = SECRET_KEY
@@ -185,7 +185,10 @@ def frontend(filename):
         return redirect(url_for("admin_login"))
     if filename.endswith(".html"):
         return render_template(filename)
-    return send_from_directory(BASE_DIR, filename)
+    return send_from_directory(
+        os.path.join(BASE_DIR, "templates"),
+        filename,
+    )
 
 
 @app.post("/api/auth/register")

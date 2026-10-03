@@ -1,11 +1,15 @@
-FROM nginx:alpine
+FROM python:3.13-slim
 
-COPY allergy_guard_app/ /usr/share/nginx/html/
-# สคริปต์นี้ nginx image จะรันให้อัตโนมัติก่อนสตาร์ต
-COPY docker/40-gen-config.sh /docker-entrypoint.d/40-gen-config.sh
-# กัน CRLF จาก Windows ทำให้สคริปต์รันไม่ได้ แล้วตั้งสิทธิ์ execute
-RUN sed -i 's/\r$//' /docker-entrypoint.d/40-gen-config.sh && chmod +x /docker-entrypoint.d/40-gen-config.sh
+WORKDIR /app
 
-EXPOSE 80
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY Allergy_Guard_app/ ./Allergy_Guard_app/
+
+ENV PYTHONUNBUFFERED=1
+ENV PORT=5000
+
+EXPOSE 5000
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "Allergy_Guard_app.admin:app"]
