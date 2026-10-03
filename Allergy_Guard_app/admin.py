@@ -377,6 +377,7 @@ def admin_logout():
 
 
 @app.route("/admin")
+@app.route("/admin/")
 @admin_required
 def admin_dashboard():
     c = db()
