@@ -509,7 +509,8 @@ def admin_user_delete(email):
 @admin_required
 def admin_import():
     try:
-        data = json.load(request.files["f"])
+        uploaded = request.files["f"]
+        data = json.load(uploaded.stream)
         u = dict(data["user"])
         email = str(u["email"]).strip().lower()
         name = str(u.get("name") or email)
