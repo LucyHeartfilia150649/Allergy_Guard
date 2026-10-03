@@ -47,9 +47,49 @@ function loadU() { const u = localStorage.getItem('ag_users'); if (u) { const p 
 
 function showAuth(p) { location.href = p === 'reg' ? 'register.html' : 'login.html'; }
 
-function doLogin() { loadU(); const e = v('lEm'), p = v('lPw'); const u = users.find(x => x.email === e && x.pass === p); if (!u) { show('lErr'); return; } hide('lErr'); enterApp(u); }
+async function doLogin() {
+  const e = v('lEm').trim().toLowerCase();
+  const p = v('lPw');
 
-function enterApp(u) { sessionStorage.setItem('ag_session', u.email); location.href = 'dashboard.html'; }
+  hide('lErr');
+
+  try {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        email: e,
+        pass: p
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.ok) {
+      show('lErr');
+      if ($('lErr')) {
+        $('lErr').textContent =
+          data.error || 'อีเมลหรือรหัสผ่านไม่ถูกต้อง';
+      }
+      return;
+    }
+
+    hide('lErr');
+    location.href = 'dashboard.html';
+
+  } catch (err) {
+    console.error('Login error:', err);
+    show('lErr');
+
+    if ($('lErr')) {
+      $('lErr').textContent =
+        'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาลองใหม่';
+    }
+  }
+}
 
 function logout() { saveLS(); sessionStorage.removeItem('ag_session'); location.href = 'login.html'; }
 
@@ -115,15 +155,57 @@ const PAGES = { dash: 'dashboard.html', assess: 'assess.html', diary: 'diary.htm
 function goto(p) { if (PAGES[p]) location.href = PAGES[p]; }
 
 // เรียกในทุกหน้าหลังล็อกอิน: ตรวจ session, โหลดข้อมูลผู้ใช้, ตั้งค่า navbar
-function requireLogin(page) {
-  loadU();
-  const u = users.find(x => x.email === sessionStorage.getItem('ag_session'));
-  if (!u) { location.replace('login.html'); return false; }
-  CU = u; loadLS();
-  $('navAv').textContent = u.name[0]; $('navNm').textContent = u.name;
-  document.querySelectorAll('.ntab').forEach((t, i) => t.classList.toggle('on', Object.keys(PAGES)[i] === page));
-  buildNotifs();
-  return true;
+async function requireLogin(page) {
+  try {
+    const res = await fetch('/api/me', {
+      method: 'GET',
+      credentials: 'same-origin'
+    });
+
+    const data = await res.json();
+
+    // ยังไม่ได้ Login หรือ Session หมดอายุ
+    if (!res.ok || !data.ok || !data.user) {
+      location.replace('login.html');
+      return false;
+    }
+
+    // ข้อมูลผู้ใช้จาก Database
+    CU = data.user;
+
+    // โหลดข้อมูลจาก Backend
+    hist = Array.isArray(data.assessments) ? data.assessments : [];
+    diary = Array.isArray(data.diary) ? data.diary : [];
+
+    // ข้อมูลอื่นที่ยังเก็บฝั่ง Browser
+    loadLS();
+
+    // ตั้งค่า Navbar
+    if ($('navAv')) {
+      $('navAv').textContent = (CU.name || '?')[0];
+    }
+
+    if ($('navNm')) {
+      $('navNm').textContent = CU.name || '';
+    }
+
+    // ตั้ง Tab ที่กำลังเปิดอยู่
+    document.querySelectorAll('.ntab').forEach((t, i) => {
+      t.classList.toggle(
+        'on',
+        Object.keys(PAGES)[i] === page
+      );
+    });
+
+    buildNotifs();
+
+    return true;
+
+  } catch (err) {
+    console.error('requireLogin error:', err);
+    location.replace('login.html');
+    return false;
+  }
 }
 
 loadU();

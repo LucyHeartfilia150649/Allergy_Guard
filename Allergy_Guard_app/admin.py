@@ -36,14 +36,21 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB = os.environ.get("ADMIN_DB", os.path.join(BASE_DIR, "allergyguard.db"))
-ADMIN_USER = os.environ.get("ADMIN_USER", "admin")
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "admin1234")
-SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-change-me")
+ADMIN_USER = os.environ.get("ADMIN_USER")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
+if not ADMIN_USER or not ADMIN_PASSWORD or not SECRET_KEY:
+    raise RuntimeError(
+        "Missing required environment variables: ADMIN_USER, ADMIN_PASSWORD, SECRET_KEY"
+    )
+
+TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 
 app = Flask(
     __name__,
-    template_folder=os.path.join(BASE_DIR, "templates"),
-    static_folder=os.path.join(BASE_DIR, "templates"),
+    template_folder=TEMPLATE_DIR,
+    static_folder=TEMPLATE_DIR,
     static_url_path="",
 )
 app.secret_key = SECRET_KEY
@@ -185,10 +192,7 @@ def frontend(filename):
         return redirect(url_for("admin_login"))
     if filename.endswith(".html"):
         return render_template(filename)
-    return send_from_directory(
-        os.path.join(BASE_DIR, "templates"),
-        filename,
-    )
+    return send_from_directory(TEMPLATE_DIR, filename)
 
 
 @app.post("/api/auth/register")
@@ -347,10 +351,10 @@ DASH = """<h1>แดชบอร์ด</h1><div class='grid'><div class='stat'><
 <div class='card'><h2>ความเสี่ยงจากผลประเมิน</h2>{% for k,(lb,c) in RISK.items() %}<span class='badge' style='background:{{c}}'>{{lb}}: {{risk.get(k,0)}}</span> {% endfor %}</div>
 <div class='card'><h2>ผู้ใช้ล่าสุด</h2><div class='tw'><table><tr><th>ชื่อ</th><th>อีเมล</th><th>เพิ่มเมื่อ</th></tr>{% for r in recent %}<tr><td>{{r.name}}</td><td><a href='{{url_for("admin_user_detail",email=r.email)}}'>{{r.email}}</a></td><td>{{r.created}}</td></tr>{% else %}<tr><td colspan='3'>ยังไม่มีผู้ใช้</td></tr>{% endfor %}</table></div></div>"""
 USERS = """<h1>ผู้ใช้</h1><div class='card'><form class='row' method='get'><input name='q' value='{{q}}' placeholder='ค้นหาชื่อหรืออีเมล'><button>ค้นหา</button></form></div>
-<div class='card'><div class='tw'><table><tr><th>ชื่อ</th><th>อีเมล</th><th>ผลประเมิน</th><th>บันทึก</th><th></th></tr>{% for r in rows %}<tr><td>{{r.name}}</td><td><a href='{{url_for("admin_user_detail",email=r.email)}}'>{{r.email}}</a></td><td>{{r.na}}</td><td>{{r.nd}}</td><td><form method='post' action='{{url_for("admin_user_delete",email=r.email)}}' onsubmit=\"return confirm('ลบผู้ใช้นี้และข้อมูลทั้งหมด?')\"><button class='danger'>ลบ</button></form></td></tr>{% else %}<tr><td colspan='5'>ไม่พบผู้ใช้</td></tr>{% endfor %}</table></div></div>
+<div class='card'><div class='tw'><table><tr><th>ชื่อ</th><th>อีเมล</th><th>ผลประเมิน</th><th>บันทึก</th><th>จัดการ</th></tr>{% for r in rows %}<tr><td><a href='{{url_for("admin_user_detail",email=r.email)}}'>{{r.name}}</a></td><td>{{r.email}}</td><td>{{r.na}}</td><td>{{r.nd}}</td><td class='row'><a class='btn' href='{{url_for("admin_user_edit",email=r.email)}}'>แก้ไข</a><form method='post' action='{{url_for("admin_user_delete",email=r.email)}}' onsubmit="return confirm('ลบผู้ใช้นี้และข้อมูลทั้งหมด?')"><button class='danger'>ลบ</button></form></td></tr>{% else %}<tr><td colspan='5'>ไม่พบผู้ใช้</td></tr>{% endfor %}</table></div></div>
 <div class='card'><h2>เพิ่มผู้ใช้</h2><form method='post' action='{{url_for("admin_user_add")}}' class='row'><input name='name' placeholder='ชื่อ-นามสกุล' required><input name='email' type='email' placeholder='อีเมล' required><input name='pw' type='password' placeholder='รหัสผ่าน (≥ 8 ตัว)' minlength='8' required><button>เพิ่ม</button></form></div>
 <div class='card'><h2>นำเข้าข้อมูลจากไฟล์</h2><p style='color:var(--mu)'>ใช้ไฟล์ allergyguard_data.json จากเมนูส่งออกข้อมูลในแอป</p><form method='post' action='{{url_for("admin_import")}}' enctype='multipart/form-data' class='row'><input type='file' name='f' accept='.json,application/json' required><button>นำเข้า</button></form></div>"""
-DETAIL = """<p><a href='{{url_for("admin_users")}}'>← กลับ</a></p><h1>{{u.name}}</h1><div class='card'><div class='tw'><table>{% for k,v in info %}<tr><th style='width:180px'>{{k}}</th><td>{{v if v not in (None,'') else '-'}}</td></tr>{% endfor %}</table></div></div>
+DETAIL = """<p><a href='{{url_for("admin_users")}}'>← กลับ</a></p><h1>{{u.name}}</h1><div class='card'><div class='row'><a class='btn' href='{{url_for("admin_user_edit",email=u.email)}}'>แก้ไขข้อมูลผู้ใช้</a><form method='post' action='{{url_for("admin_user_delete",email=u.email)}}' onsubmit=\"return confirm('ลบผู้ใช้นี้และข้อมูลทั้งหมด?')\"><button class='danger'>ลบผู้ใช้</button></form></div></div><div class='card'><div class='tw'><table>{% for k,v in info %}<tr><th style='width:180px'>{{k}}</th><td>{{v if v not in (None,'') else '-'}}</td></tr>{% endfor %}</table></div></div>
 <div class='card'><h2>ประวัติการประเมิน ({{assess|length}})</h2><div class='tw'><table><tr><th>วันที่</th><th>ประเภทหลัก</th><th>ความเสี่ยง</th><th>ความรุนแรง</th><th>อาการ</th></tr>{% for a in assess %}{% set lb,c=RISK.get(a.get('r'),('-', '#6B7280')) %}<tr><td>{{a.get('dt')}}</td><td>{{a.get('topT')}}</td><td><span class='badge' style='background:{{c}}'>{{lb}}</span></td><td>{{a.get('sev')}}/10</td><td>{{a.get('syms',[])|join(', ')}}</td></tr>{% else %}<tr><td colspan='5'>ไม่มีข้อมูล</td></tr>{% endfor %}</table></div></div>
 <div class='card'><h2>บันทึกอาการ ({{diary|length}})</h2><div class='tw'><table><tr><th>วันที่</th><th>ระดับ</th><th>อาการ</th><th>หมายเหตุ</th></tr>{% for d in diary %}<tr><td>{{d.get('date')}}</td><td>{{d.get('level')}}</td><td>{{d.get('syms',[])|join(', ')}}</td><td>{{d.get('note','')}}</td></tr>{% else %}<tr><td colspan='4'>ไม่มีข้อมูล</td></tr>{% endfor %}</table></div></div>"""
 
@@ -425,6 +429,78 @@ def admin_users():
         .fetchall()
     )
     return admin_page(USERS, rows=rows, q=q)
+
+
+EDIT = """<p><a href='{{url_for("admin_user_detail",email=u.email)}}'>← กลับไปข้อมูลผู้ใช้</a></p><h1>แก้ไขผู้ใช้</h1><div class='card'><p style='color:var(--mu)'>อีเมลใช้เป็นรหัสประจำตัวของบัญชี จึงไม่เปิดให้เปลี่ยนจากหน้านี้</p><form method='post' class='row' style='flex-direction:column;align-items:stretch'>
+<label>อีเมล<input type='email' value='{{u.email}}' disabled></label>
+<label>ชื่อ-นามสกุล<input name='name' value='{{u.name}}' required></label>
+<label>อายุ<input name='age' type='number' min='1' max='150' value='{{u.get("age", "")}}'></label>
+<label>เพศ<input name='sex' value='{{u.get("sex", "")}}'></label>
+<label>น้ำหนัก (กก.)<input name='wt' value='{{u.get("wt", "")}}'></label>
+<label>ส่วนสูง (ซม.)<input name='ht' value='{{u.get("ht", "")}}'></label>
+<label>หมู่เลือด<input name='bld' value='{{u.get("bld", "")}}'></label>
+<label>ประวัติครอบครัว<input name='fam' value='{{u.get("fam", "")}}'></label>
+<label>สภาพแวดล้อม<input name='env' value='{{u.get("env", "")}}'></label>
+<label>อาชีพ<input name='job' value='{{u.get("job", "")}}'></label>
+<label>สัตว์เลี้ยง<input name='pet' value='{{u.get("pet", "")}}'></label>
+<label>แพ้อาหาร<input name='fa' value='{{u.get("fa", "")}}'></label>
+<label>แพ้ยา<input name='da' value='{{u.get("da", "")}}'></label>
+<label>โรคประจำตัว<input name='dis' value='{{u.get("dis", "")}}'></label>
+<label>รหัสผ่านใหม่ <span style='color:var(--mu)'>(เว้นว่างถ้าไม่ต้องการเปลี่ยน)</span><input name='pw' type='password' minlength='8' placeholder='อย่างน้อย 8 ตัว'></label>
+<div class='row'><button type='submit'>บันทึกการแก้ไข</button><a class='btn' href='{{url_for("admin_user_detail",email=u.email)}}'>ยกเลิก</a></div></form></div>"""
+
+
+@app.route("/admin/users/<path:email>/edit", methods=["GET", "POST"])
+@admin_required
+def admin_user_edit(email):
+    c = db()
+    row = c.execute("SELECT * FROM users WHERE email=?", (email,)).fetchone()
+    if not row:
+        flash("ไม่พบผู้ใช้")
+        return redirect(url_for("admin_users"))
+    u = json_user(row)
+    if request.method == "POST":
+        f = request.form
+        name = f.get("name", "").strip()
+        if not name:
+            flash("กรุณาระบุชื่อผู้ใช้")
+            return redirect(url_for("admin_user_edit", email=email))
+        editable_keys = [
+            "age",
+            "sex",
+            "wt",
+            "ht",
+            "bld",
+            "fam",
+            "env",
+            "job",
+            "pet",
+            "fa",
+            "da",
+            "dis",
+        ]
+        data = dict(u)
+        data["email"] = email
+        data["name"] = name
+        for key in editable_keys:
+            data[key] = f.get(key, "").strip()
+        new_password = f.get("pw", "")
+        if new_password and len(new_password) < 8:
+            flash("รหัสผ่านใหม่ต้องมีอย่างน้อย 8 ตัว")
+            return redirect(url_for("admin_user_edit", email=email))
+        c.execute(
+            "UPDATE users SET name=?, data=? WHERE email=?",
+            (name, json.dumps(data, ensure_ascii=False), email),
+        )
+        if new_password:
+            c.execute(
+                "UPDATE users SET pw=? WHERE email=?",
+                (generate_password_hash(new_password), email),
+            )
+        c.commit()
+        flash("บันทึกการแก้ไขผู้ใช้แล้ว")
+        return redirect(url_for("admin_user_detail", email=email))
+    return admin_page(EDIT, u=u)
 
 
 @app.route("/admin/users/<path:email>")
@@ -557,8 +633,4 @@ def admin_import():
 
 if __name__ == "__main__":
     init_db()
-    if ADMIN_PASSWORD == "admin1234":
-        print(
-            "⚠️ ใช้รหัสผ่านทดสอบ admin / admin1234 — ตั้ง ADMIN_PASSWORD ก่อนใช้งานจริง"
-        )
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")), debug=False)
