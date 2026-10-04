@@ -1702,3 +1702,55 @@ button {
     opacity: 1
   }
 }
+.password-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrap input {
+  width: 100%;
+  padding-right: 48px !important;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 34px;
+  height: 34px;
+
+  padding: 5px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle img {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+}
+
+.password-rules {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #6B7280;
+}
+
+.password-rules .valid {
+  color: #0D9373;
+  font-weight: 600;
+}
+.recaptcha-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 12px 0 16px;
+}

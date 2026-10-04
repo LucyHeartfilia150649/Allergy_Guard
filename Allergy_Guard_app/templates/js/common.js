@@ -209,3 +209,69 @@ async function requireLogin(page) {
 }
 
 loadU();
+let recaptchaToken = '';
+
+function onRecaptchaSuccess(token) {
+  recaptchaToken = token;
+}
+
+function onRecaptchaExpired() {
+  recaptchaToken = '';
+}
+
+
+function togglePassword(inputId, button) {
+  const input = $(inputId);
+  const img = button.querySelector('img');
+
+  if (!input || !img) return;
+
+  if (input.type === 'password') {
+    input.type = 'text';
+    img.src = '/static/images/eye_opened.png';
+  } else {
+    input.type = 'password';
+    img.src = '/static/images/eye_closed.png';
+  }
+}
+
+
+function isStrongPassword(password) {
+  return (
+    password.length >= 8 &&
+    /[a-z]/.test(password) &&
+    /[A-Z]/.test(password) &&
+    /[0-9]/.test(password) &&
+    /[^A-Za-z0-9]/.test(password)
+  );
+}
+
+
+function updatePasswordRules(inputId) {
+  const password = v(inputId);
+
+  const rules = {
+    length: password.length >= 8,
+    lower: /[a-z]/.test(password),
+    upper: /[A-Z]/.test(password),
+    number: /[0-9]/.test(password),
+    special: /[^A-Za-z0-9]/.test(password)
+  };
+
+  Object.entries(rules).forEach(([key, ok]) => {
+
+    const el = document.querySelector(
+      `[data-rule="${key}"]`
+    );
+
+    if (!el) return;
+
+    const text =
+      el.textContent.replace(/^[✓✕]\s*/, '');
+
+    el.textContent =
+      `${ok ? '✓' : '✕'} ${text}`;
+
+    el.classList.toggle('valid', ok);
+  });
+}

@@ -15,6 +15,9 @@ import hmac
 import json
 import os
 import sqlite3
+import urllib.parse
+import urllib.request
+import re
 from datetime import datetime
 from functools import wraps
 
@@ -36,22 +39,25 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB = os.environ.get("ADMIN_DB", os.path.join(BASE_DIR, "allergyguard.db"))
-ADMIN_USER = os.environ.get("ADMIN_USER")
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
-SECRET_KEY = os.environ.get("SECRET_KEY")
+ADMIN_USER = os.environ.get("ADMIN_USER") or ""
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD") or ""
+SECRET_KEY = os.environ.get("SECRET_KEY") or ""
 
+RECAPTCHA_SITE_KEY = os.environ.get("RECAPTCHA_SITE_KEY", "")
+RECAPTCHA_SECRET_KEY = os.environ.get("RECAPTCHA_SECRET_KEY", "")
 if not ADMIN_USER or not ADMIN_PASSWORD or not SECRET_KEY:
     raise RuntimeError(
         "Missing required environment variables: ADMIN_USER, ADMIN_PASSWORD, SECRET_KEY"
     )
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 app = Flask(
     __name__,
     template_folder=TEMPLATE_DIR,
-    static_folder=TEMPLATE_DIR,
-    static_url_path="",
+    static_folder=STATIC_DIR,
+    static_url_path="/static",
 )
 app.secret_key = SECRET_KEY
 app.config.update(
@@ -65,6 +71,40 @@ RISK = {
     "med": ("ปานกลาง", "#D97706"),
     "lo": ("ต่ำ", "#0D9373"),
 }
+PASSWORD_PATTERN = re.compile(
+    r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$"
+)
+
+
+def valid_password(password):
+    return bool(PASSWORD_PATTERN.fullmatch(password))
+
+
+def verify_recaptcha(token):
+    if not RECAPTCHA_SECRET_KEY or not token:
+        return False
+
+    try:
+        data = urllib.parse.urlencode(
+            {
+                "secret": RECAPTCHA_SECRET_KEY,
+                "response": token,
+            }
+        ).encode("utf-8")
+
+        req = urllib.request.Request(
+            "https://www.google.com/recaptcha/api/siteverify",
+            data=data,
+            method="POST",
+        )
+
+        with urllib.request.urlopen(req, timeout=5) as response:
+            result = json.loads(response.read().decode("utf-8"))
+
+        return bool(result.get("success"))
+
+    except Exception:
+        return False
 
 
 def db():
@@ -198,18 +238,56 @@ def frontend(filename):
 @app.post("/api/auth/register")
 def api_register():
     payload = request.get_json(silent=True) or {}
+
     email = str(payload.get("email", "")).strip().lower()
     password = str(payload.get("pass", ""))
+    recaptcha_token = str(payload.get("recaptcha_token", ""))
     user = payload.get("user") or {}
-    if not email or "@" not in email or len(password) < 8 or not user.get("name"):
-        return jsonify({"ok": False, "error": "ข้อมูลสมัครสมาชิกไม่ครบ"}), 400
+
+    if not verify_recaptcha(recaptcha_token):
+        return (
+            jsonify(
+                {
+                    "ok": False,
+                    "error": "กรุณายืนยัน reCAPTCHA ก่อนสมัครสมาชิก",
+                    "code": "RECAPTCHA_FAILED",
+                }
+            ),
+            400,
+        )
+
+    if not email or "@" not in email or not user.get("name"):
+        return jsonify({"ok": False, "error": "กรุณากรอกข้อมูลให้ครบ"}), 400
+
+    if not valid_password(password):
+        return (
+            jsonify(
+                {
+                    "ok": False,
+                    "error": "รหัสผ่านต้องมีอย่างน้อย 8 ตัว และต้องมีตัวพิมพ์เล็ก ตัวพิมพ์ใหญ่ ตัวเลข และอักขระพิเศษ",
+                    "code": "WEAK_PASSWORD",
+                }
+            ),
+            400,
+        )
+
     if db().execute("SELECT 1 FROM users WHERE email=?", (email,)).fetchone():
-        return jsonify({"ok": False, "error": "อีเมลนี้มีผู้ใช้งานแล้ว"}), 409
+        return (
+            jsonify(
+                {
+                    "ok": False,
+                    "error": "อีเมลนี้มีบัญชีอยู่แล้ว",
+                    "code": "EMAIL_EXISTS",
+                }
+            ),
+            409,
+        )
+
     user = clean_user(user)
     user["email"] = email
     user["name"] = str(user.get("name", "")).strip()
-    c = db()
-    c.execute(
+    connection = db()
+    connection.execute(
         "INSERT INTO users(email,name,pw,data,created) VALUES(?,?,?,?,?)",
         (
             email,
@@ -219,17 +297,32 @@ def api_register():
             datetime.now().strftime("%Y-%m-%d %H:%M"),
         ),
     )
-    c.commit()
+    connection.commit()
     session.clear()
     session["user_email"] = email
-    return jsonify({"ok": True, "user": clean_user(user)})
+    return jsonify({"ok": True, "user": user}), 201
 
 
 @app.post("/api/auth/login")
 def api_login():
     payload = request.get_json(silent=True) or {}
+
     email = str(payload.get("email", "")).strip().lower()
     password = str(payload.get("pass", ""))
+    recaptcha_token = str(payload.get("recaptcha_token", ""))
+
+    if not verify_recaptcha(recaptcha_token):
+        return (
+            jsonify(
+                {
+                    "ok": False,
+                    "error": "กรุณายืนยัน reCAPTCHA ก่อนเข้าสู่ระบบ",
+                    "code": "RECAPTCHA_FAILED",
+                }
+            ),
+            400,
+        )
+
     row = db().execute("SELECT * FROM users WHERE email=?", (email,)).fetchone()
     if not row:
         return (
@@ -629,6 +722,13 @@ def admin_import():
         f"นำเข้าข้อมูลของ {name} แล้ว (ประเมิน {len(assessments)}, บันทึก {len(diary)})"
     )
     return redirect(url_for("admin_user_detail", email=email))
+
+
+@app.context_processor
+def inject_config():
+    return {
+        "RECAPTCHA_SITE_KEY": RECAPTCHA_SITE_KEY,
+    }
 
 
 if __name__ == "__main__":

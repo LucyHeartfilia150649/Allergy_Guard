@@ -1,37 +1,101 @@
 <!DOCTYPE html>
 <html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AllergyGuard — เข้าสู่ระบบ</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+    <title>AllergyGuard — เข้าสู่ระบบ</title>
 
-<body>
-  <div id="authWrap">
-    <div id="pgLogin" class="auth-bg">
-      <div class="auth-card">
-        <div class="auth-hd">
-          <div class="auth-ico">🫁</div>
-          <h1 class="auth-ttl">AllergyGuard</h1>
-          <p class="auth-sub">ระบบดูแล ติดตาม และป้องกันโรคภูมิแพ้ครบวงจร</p>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+
+  <body>
+    <div id="authWrap">
+      <div id="pgLogin" class="auth-bg">
+        <div class="auth-card">
+          <!--    =========================
+             Header
+        ==========================    -->
+          <div class="auth-hd">
+            <div class="auth-ico">🫁</div>
+
+            <h1 class="auth-ttl">AllergyGuard</h1>
+
+            <p class="auth-sub">ระบบดูแล ติดตาม และป้องกันโรคภูมิแพ้ครบวงจร</p>
+          </div>
+
+          <!--    =========================
+             Email
+        ==========================    -->
+          <div class="fg">
+            <label for="lEm">อีเมล</label>
+
+            <input type="email" id="lEm" placeholder="your@gmail.com" autocomplete="email" />
+          </div>
+
+          <!--    =========================
+             Password
+        ==========================    -->
+          <div class="fg">
+            <label for="lPw">รหัสผ่าน</label>
+
+            <div class="password-wrap">
+              <input type="password" id="lPw" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key === 'Enter') doLogin()" />
+
+              <!-- ปุ่มแสดง / ซ่อน Password -->
+              <button type="button" class="password-toggle" onclick="togglePassword('lPw', this)" aria-label="แสดงรหัสผ่าน" title="แสดงรหัสผ่าน"><img src="{{ url_for('static', filename='images/eye_closed.png') }}" alt="แสดงหรือซ่อนรหัสผ่าน" /></button>
+            </div>
+          </div>
+
+          <!--    =========================
+             reCAPTCHA
+        ==========================    -->
+          <div class="recaptcha-wrap">
+            <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_SITE_KEY }}"></div>
+          </div>
+
+          <!--    =========================
+             Login Error
+        ==========================    -->
+          <div id="lErr" class="err-box hidden">อีเมลหรือรหัสผ่านไม่ถูกต้อง</div>
+
+          <!--    =========================
+             Login Button
+        ==========================    -->
+          <button type="button" class="btn-main" onclick="doLogin()">เข้าสู่ระบบ →</button>
+
+          <!--    =========================
+             Register
+        ==========================    -->
+          <div class="or-l">หรือ</div>
+
+          <div class="sw-l">
+            ยังไม่มีบัญชี?
+            <a onclick="showAuth('reg')">สมัครฟรีเลย →</a>
+          </div>
+
+          <!--    =========================
+             Demo Account
+        ==========================    -->
+          <div class="demo-box">
+            🔑 ทดลอง:
+            <b>demo@allergy.com</b>
+            /
+            <b>demo1234</b>
+          </div>
         </div>
-        <div class="fg"><label>อีเมล</label><input type="email" id="lEm" placeholder="your@gmail.com"></div>
-        <div class="fg"><label>รหัสผ่าน</label><input type="password" id="lPw" placeholder="••••••••"
-            onkeydown="if(event.key==='Enter')doLogin()"></div>
-        <div id="lErr" class="err-box hidden">อีเมลหรือรหัสผ่านไม่ถูกต้อง</div>
-        <button class="btn-main" onclick="doLogin()">เข้าสู่ระบบ →</button>
-        <div class="or-l">หรือ</div>
-        <div class="sw-l">ยังไม่มีบัญชี? <a onclick="showAuth('reg')">สมัครฟรีเลย →</a></div>
-        <div class="demo-box">🔑 ทดลอง: <b>demo@allergy.com</b> / <b>demo1234</b></div>
       </div>
     </div>
-  </div>
-  <script src="js/common.js"></script>
-  <script src="js/login.js"></script>
-</body>
 
+    <!-- Common JavaScript -->
+    <script src="js/common.js"></script>
+
+    <!-- Login JavaScript -->
+    <script src="js/login.js"></script>
+  </body>
 </html>

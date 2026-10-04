@@ -1,110 +1,288 @@
 <!DOCTYPE html>
 <html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AllergyGuard — สมัครสมาชิก</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+    <title>AllergyGuard — สมัครสมาชิก</title>
 
-<body>
-  <div id="authWrap">
-    <div id="pgReg" class="auth-bg">
-      <div class="auth-card">
-        <div class="auth-hd">
-          <div class="auth-ico">📋</div>
-          <h1 class="auth-ttl">สร้างบัญชีใหม่</h1>
-          <p class="auth-sub">3 ขั้นตอนเพื่อเริ่มดูแลสุขภาพ</p>
-        </div>
-        <div class="reg-bar">
-          <div class="rbd act" id="rd1"></div>
-          <div class="rbd" id="rd2"></div>
-          <div class="rbd" id="rd3"></div>
-        </div>
-        <div id="rs1">
-          <div class="step-cap">ขั้นตอน 1/3 — ข้อมูลบัญชี</div>
-          <div class="fg"><label>ชื่อ-นามสกุล</label><input id="rNm" placeholder="เช่น สมชาย ใจดี"></div>
-          <div class="r2">
-            <div class="fg"><label>อีเมล</label><input type="email" id="rEm" placeholder="your@gmail.com"></div>
-            <div class="fg"><label>รหัสผ่าน (≥8)</label><input type="password" id="rPw" placeholder="••••••••"></div>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+
+  <body>
+    <div id="authWrap">
+      <div id="pgReg" class="auth-bg">
+        <div class="auth-card">
+          <!--  =========================
+             Header
+        ==========================  -->
+          <div class="auth-hd">
+            <div class="auth-ico">📋</div>
+
+            <h1 class="auth-ttl">สร้างบัญชีใหม่</h1>
+
+            <p class="auth-sub">3 ขั้นตอนเพื่อเริ่มดูแลสุขภาพ</p>
           </div>
-          <button class="btn-main" onclick="rsN(1)">ถัดไป →</button>
-        </div>
-        <div id="rs2" class="hidden">
-          <div class="step-cap">ขั้นตอน 2/3 — ข้อมูลสุขภาพ</div>
-          <div class="r2">
-            <div class="fg"><label>อายุ (ปี)</label><input type="number" id="rAge" placeholder="30" min="1" max="120">
+
+          <!--  =========================
+             Progress Bar
+        ==========================  -->
+          <div class="reg-bar">
+            <div class="rbd act" id="rd1"></div>
+
+            <div class="rbd" id="rd2"></div>
+
+            <div class="rbd" id="rd3"></div>
+          </div>
+
+          <!--  ==================================================
+             STEP 1
+        ===================================================  -->
+          <div id="rs1">
+            <div class="step-cap">ขั้นตอน 1/3 — ข้อมูลบัญชี</div>
+
+            <!-- Name -->
+            <div class="fg">
+              <label for="rNm">ชื่อ-นามสกุล</label>
+
+              <input id="rNm" placeholder="เช่น สมชาย ใจดี" autocomplete="name" />
             </div>
-            <div class="fg"><label>เพศ</label><select id="rSex" title="เพศ">
-                <option value="">—เลือก—</option>
-                <option>ชาย</option>
-                <option>หญิง</option>
-                <option>อื่นๆ</option>
-              </select></div>
+
+            <!-- Email + Password -->
+            <div class="r2">
+              <!-- Email -->
+              <div class="fg">
+                <label for="rEm">อีเมล</label>
+
+                <input type="email" id="rEm" placeholder="your@gmail.com" autocomplete="email" />
+              </div>
+
+              <!-- Password -->
+              <div class="fg">
+                <label for="rPw">รหัสผ่าน</label>
+
+                <div class="password-wrap">
+                  <input type="password" id="rPw" placeholder="••••••••" autocomplete="new-password" oninput="updatePasswordRules('rPw')" />
+
+                  <!-- ปุ่มแสดง / ซ่อน Password -->
+                  <button type="button" class="password-toggle" onclick="togglePassword('rPw', this)" aria-label="แสดงรหัสผ่าน" title="แสดงรหัสผ่าน"><img src="{{ url_for('static', filename='images/eye_closed.png') }}" alt="แสดงหรือซ่อนรหัสผ่าน" /></button>
+                </div>
+
+                <!-- Password Requirements -->
+                <div id="passwordRules" class="password-rules">
+                  <div data-rule="length">✕ อย่างน้อย 8 ตัวอักษร</div>
+
+                  <div data-rule="lower">✕ มีตัวพิมพ์เล็ก (a-z)</div>
+
+                  <div data-rule="upper">✕ มีตัวพิมพ์ใหญ่ (A-Z)</div>
+
+                  <div data-rule="number">✕ มีตัวเลข (0-9)</div>
+
+                  <div data-rule="special">✕ มีอักขระพิเศษ</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Next -->
+            <button type="button" class="btn-main" onclick="rsN(1)">ถัดไป →</button>
           </div>
-          <div class="r2">
-            <div class="fg"><label>น้ำหนัก (กก.)</label><input type="number" id="rWt" placeholder="65"></div>
-            <div class="fg"><label>ส่วนสูง (ซม.)</label><input type="number" id="rHt" placeholder="170"></div>
+
+          <!--  ==================================================
+             STEP 2
+        ===================================================  -->
+          <div id="rs2" class="hidden">
+            <div class="step-cap">ขั้นตอน 2/3 — ข้อมูลสุขภาพ</div>
+
+            <!-- Age + Sex -->
+            <div class="r2">
+              <div class="fg">
+                <label for="rAge">อายุ (ปี)</label>
+
+                <input type="number" id="rAge" placeholder="30" min="1" max="120" />
+              </div>
+
+              <div class="fg">
+                <label for="rSex">เพศ</label>
+
+                <select id="rSex" title="เพศ">
+                  <option value="">—เลือก—</option>
+
+                  <option>ชาย</option>
+
+                  <option>หญิง</option>
+
+                  <option>อื่นๆ</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Weight + Height -->
+            <div class="r2">
+              <div class="fg">
+                <label for="rWt">น้ำหนัก (กก.)</label>
+
+                <input type="number" id="rWt" placeholder="65" />
+              </div>
+
+              <div class="fg">
+                <label for="rHt">ส่วนสูง (ซม.)</label>
+
+                <input type="number" id="rHt" placeholder="170" />
+              </div>
+            </div>
+
+            <!-- Blood + Family -->
+            <div class="r2">
+              <div class="fg">
+                <label for="rBld">กรุ๊ปเลือด</label>
+
+                <select id="rBld" title="กรุ๊ปเลือด">
+                  <option value="">ไม่ทราบ</option>
+
+                  <option>A</option>
+
+                  <option>B</option>
+
+                  <option>O</option>
+
+                  <option>AB</option>
+                </select>
+              </div>
+
+              <div class="fg">
+                <label for="rFam">ครอบครัวแพ้</label>
+
+                <select id="rFam" title="ประวัติครอบครัวแพ้">
+                  <option value="0">ไม่มี</option>
+
+                  <option value="1">พ่อหรือแม่</option>
+
+                  <option value="2">ทั้งคู่</option>
+
+                  <option value="0.5">ไม่แน่ใจ</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Back + Next -->
+            <div class="brow">
+              <button type="button" class="btn-ghost" onclick="rsB(2)">← ย้อน</button>
+
+              <button type="button" class="btn-t full" onclick="rsN(2)">ถัดไป →</button>
+            </div>
           </div>
-          <div class="r2">
-            <div class="fg"><label>กรุ๊ปเลือด</label><select id="rBld" title="กรุ๊ปเลือด">
-                <option value="">ไม่ทราบ</option>
-                <option>A</option>
-                <option>B</option>
-                <option>O</option>
-                <option>AB</option>
-              </select></div>
-            <div class="fg"><label>ครอบครัวแพ้</label><select id="rFam" title="ประวัติครอบครัวแพ้">
+
+          <!--  ==================================================
+             STEP 3
+        ===================================================  -->
+          <div id="rs3" class="hidden">
+            <div class="step-cap">ขั้นตอน 3/3 — วิถีชีวิต & ประวัติแพ้</div>
+
+            <!-- Environment + Job -->
+            <div class="r2">
+              <div class="fg">
+                <label for="rEnv">สภาพแวดล้อม</label>
+
+                <select id="rEnv" title="สภาพแวดล้อมที่อยู่อาศัย">
+                  <option value="urban">เมือง/มลภาวะสูง</option>
+
+                  <option value="suburban">ชานเมือง</option>
+
+                  <option value="rural">ชนบท</option>
+                </select>
+              </div>
+
+              <div class="fg">
+                <label for="rJob">อาชีพ</label>
+
+                <select id="rJob" title="อาชีพ">
+                  <option value="">—เลือก—</option>
+
+                  <option value="office">พนักงานออฟฟิศ</option>
+
+                  <option value="outdoor">งานนอกสถานที่</option>
+
+                  <option value="medical">บุคลากรการแพทย์</option>
+
+                  <option value="student">นักเรียน/นักศึกษา</option>
+
+                  <option value="farmer">เกษตรกร</option>
+
+                  <option value="other">อื่นๆ</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Pets -->
+            <div class="fg">
+              <label for="rPet">สัตว์เลี้ยง</label>
+
+              <select id="rPet" title="สัตว์เลี้ยงในบ้าน">
                 <option value="0">ไม่มี</option>
-                <option value="1">พ่อหรือแม่</option>
-                <option value="2">ทั้งคู่</option>
-                <option value="0.5">ไม่แน่ใจ</option>
-              </select></div>
+
+                <option value="1">มี (สุนัข/แมวในบ้าน)</option>
+
+                <option value="0.5">มี (อยู่นอกบ้าน)</option>
+              </select>
+            </div>
+
+            <!-- Food Allergy -->
+            <div class="fg">
+              <label for="rFA">ประวัติแพ้อาหาร</label>
+
+              <input id="rFA" placeholder="เช่น นม, ถั่ว, อาหารทะเล (เว้นว่างถ้าไม่มี)" />
+            </div>
+
+            <!-- Drug Allergy -->
+            <div class="fg">
+              <label for="rDA">ประวัติแพ้ยา</label>
+
+              <input id="rDA" placeholder="เช่น เพนนิซิลิน, แอสไพริน (เว้นว่างถ้าไม่มี)" />
+            </div>
+
+            <!-- Other Diseases -->
+            <div class="fg">
+              <label for="rDis">โรคประจำตัวอื่นๆ</label>
+
+              <input id="rDis" placeholder="เช่น เบาหวาน, ความดัน (เว้นว่างถ้าไม่มี)" />
+            </div>
+
+            <!--  =========================
+               reCAPTCHA
+          ==========================  -->
+            <div class="recaptcha-wrap">
+              <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_SITE_KEY }}" data-callback="onRecaptchaSuccess" data-expired-callback="onRecaptchaExpired"></div>
+            </div>
+
+            <!-- Back + Create Account -->
+            <div class="brow">
+              <button type="button" class="btn-ghost" onclick="rsB(3)">← ย้อน</button>
+
+              <button type="button" class="btn-t full" onclick="doReg()">✅ สร้างบัญชี</button>
+            </div>
           </div>
-          <div class="brow"><button class="btn-ghost" onclick="rsB(2)">← ย้อน</button><button class="btn-t full"
-              onclick="rsN(2)">ถัดไป →</button></div>
-        </div>
-        <div id="rs3" class="hidden">
-          <div class="step-cap">ขั้นตอน 3/3 — วิถีชีวิต & ประวัติแพ้</div>
-          <div class="r2">
-            <div class="fg"><label>สภาพแวดล้อม</label><select id="rEnv" title="สภาพแวดล้อมที่อยู่อาศัย">
-                <option value="urban">เมือง/มลภาวะสูง</option>
-                <option value="suburban">ชานเมือง</option>
-                <option value="rural">ชนบท</option>
-              </select></div>
-            <div class="fg"><label>อาชีพ</label><select id="rJob" title="อาชีพ">
-                <option value="">—เลือก—</option>
-                <option value="office">พนักงานออฟฟิศ</option>
-                <option value="outdoor">งานนอกสถานที่</option>
-                <option value="medical">บุคลากรการแพทย์</option>
-                <option value="student">นักเรียน/นักศึกษา</option>
-                <option value="farmer">เกษตรกร</option>
-                <option value="other">อื่นๆ</option>
-              </select></div>
+
+          <!--  =========================
+             Login Link
+        ==========================  -->
+          <div class="sw-l" style="margin-top:1rem">
+            มีบัญชีแล้ว?
+
+            <a onclick="showAuth('login')">เข้าสู่ระบบ</a>
           </div>
-          <div class="fg"><label>สัตว์เลี้ยง</label><select id="rPet" title="สัตว์เลี้ยงในบ้าน">
-              <option value="0">ไม่มี</option>
-              <option value="1">มี (สุนัข/แมวในบ้าน)</option>
-              <option value="0.5">มี (อยู่นอกบ้าน)</option>
-            </select></div>
-          <div class="fg"><label>ประวัติแพ้อาหาร</label><input id="rFA"
-              placeholder="เช่น นม, ถั่ว, อาหารทะเล (เว้นว่างถ้าไม่มี)"></div>
-          <div class="fg"><label>ประวัติแพ้ยา</label><input id="rDA"
-              placeholder="เช่น เพนนิซิลิน, แอสไพริน (เว้นว่างถ้าไม่มี)"></div>
-          <div class="fg"><label>โรคประจำตัวอื่นๆ</label><input id="rDis"
-              placeholder="เช่น เบาหวาน, ความดัน (เว้นว่างถ้าไม่มี)"></div>
-          <div class="brow"><button class="btn-ghost" onclick="rsB(3)">← ย้อน</button><button class="btn-t full"
-              onclick="doReg()">✅ สร้างบัญชี</button></div>
         </div>
-        <div class="sw-l" style="margin-top:1rem">มีบัญชีแล้ว? <a onclick="showAuth('login')">เข้าสู่ระบบ</a></div>
       </div>
     </div>
-  </div>
-  <script src="js/common.js"></script>
-  <script src="js/register.js"></script>
-</body>
 
+    <!-- Common JavaScript -->
+    <script src="js/common.js"></script>
+
+    <!-- Register JavaScript -->
+    <script src="js/register.js"></script>
+  </body>
 </html>
